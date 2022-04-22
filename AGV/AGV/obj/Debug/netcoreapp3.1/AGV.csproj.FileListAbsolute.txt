@@ -16,3 +16,4 @@ C:\Users\iceha\OneDrive\Skrivebord\Project\CPS-4sem-Project\AGV\AGV\obj\Debug\ne
 C:\Users\iceha\OneDrive\Skrivebord\Project\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.dll
 C:\Users\iceha\OneDrive\Skrivebord\Project\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.pdb
 C:\Users\iceha\OneDrive\Skrivebord\Project\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.genruntimeconfig.cache
+C:\Users\iceha\OneDrive\Skrivebord\Project\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\Hazelcast.Net.dll

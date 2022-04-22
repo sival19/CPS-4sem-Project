@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "Hazelcast.Net/3.12.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Hazelcast.Net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Hazelcast.Net.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -35,6 +44,21 @@
     }
   },
   "libraries": {
+    "Hazelcast.Net/3.12.3": {
+      "sha512": "m4Nk26Qb36D72WrIn5024lE68AA8olysztc0t7IpRyMQnKuShB0/59Dag73EH9LSwkM189l5LNojUKQBSxojdg==",
+      "type": "package",
+      "path": "hazelcast.net/3.12.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "hazelcast.net.3.12.3.nupkg.sha512",
+        "hazelcast.net.nuspec",
+        "lib/net40/Hazelcast.Net.dll",
+        "lib/net40/Hazelcast.Net.xml",
+        "lib/netstandard2.0/Hazelcast.Net.dll",
+        "lib/netstandard2.0/Hazelcast.Net.xml"
+      ]
+    },
     "Newtonsoft.Json/13.0.1": {
       "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
       "type": "package",
@@ -105,24 +129,25 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Hazelcast.Net >= 3.12.3",
       "Newtonsoft.Json >= 13.0.1",
       "RestSharp >= 107.3.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\marga\\.nuget\\packages\\": {}
+    "C:\\Users\\iceha\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\marga\\Desktop\\SemProRoboNew\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj",
+      "projectUniqueName": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj",
       "projectName": "AGV",
-      "projectPath": "C:\\Users\\marga\\Desktop\\SemProRoboNew\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj",
-      "packagesPath": "C:\\Users\\marga\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\marga\\Desktop\\SemProRoboNew\\CPS-4sem-Project\\AGV\\AGV\\obj\\",
+      "projectPath": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj",
+      "packagesPath": "C:\\Users\\iceha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\marga\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\iceha\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -130,6 +155,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Users\\iceha\\OneDrive\\Skrivebord\\NuGets": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -148,6 +174,10 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
+          "Hazelcast.Net": {
+            "target": "Package",
+            "version": "[3.12.3, )"
+          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.1, )"

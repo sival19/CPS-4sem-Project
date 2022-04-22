@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marga\\Desktop\\SemProRoboNew\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj": {}
+    "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marga\\Desktop\\SemProRoboNew\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj": {
+    "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marga\\Desktop\\SemProRoboNew\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj",
+        "projectUniqueName": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj",
         "projectName": "AGV",
-        "projectPath": "C:\\Users\\marga\\Desktop\\SemProRoboNew\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj",
-        "packagesPath": "C:\\Users\\marga\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marga\\Desktop\\SemProRoboNew\\CPS-4sem-Project\\AGV\\AGV\\obj\\",
+        "projectPath": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj",
+        "packagesPath": "C:\\Users\\iceha\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\marga\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\iceha\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\iceha\\OneDrive\\Skrivebord\\NuGets": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,6 +41,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Hazelcast.Net": {
+              "target": "Package",
+              "version": "[3.12.3, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"

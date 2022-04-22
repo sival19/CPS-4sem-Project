@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "MPL7qVLNWBej5V8M4MlfYhVexlHidk7aQPJGt6pF4H11lKeNUod89FCoKApZODH1TlDFX1mtMCentlbAIVk0LA==",
+  "dgSpecHash": "RpeMzWBFXSxAqLkLp+GNeft73nRMfGoyT5IYqWPpiwTRByc11FtWoFDbGbMmR6WPfCFbJm/lvW0c9DjJUCGqEg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\marga\\Desktop\\SemProRoboNew\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj",
+  "projectFilePath": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\marga\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
-    "C:\\Users\\marga\\.nuget\\packages\\restsharp\\107.3.0\\restsharp.107.3.0.nupkg.sha512",
-    "C:\\Users\\marga\\.nuget\\packages\\system.text.json\\5.0.0\\system.text.json.5.0.0.nupkg.sha512"
+    "C:\\Users\\iceha\\.nuget\\packages\\hazelcast.net\\3.12.3\\hazelcast.net.3.12.3.nupkg.sha512",
+    "C:\\Users\\iceha\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\iceha\\.nuget\\packages\\restsharp\\107.3.0\\restsharp.107.3.0.nupkg.sha512",
+    "C:\\Users\\iceha\\.nuget\\packages\\system.text.json\\5.0.0\\system.text.json.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }
