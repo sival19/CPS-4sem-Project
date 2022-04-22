@@ -6,7 +6,12 @@ namespace Warehouse
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+            //SOAP
+            SOAP soap = new SOAP();
+            _ = soap.RunExample();
+
+            Console.ReadKey();
         }
     }
 }

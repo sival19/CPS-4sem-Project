@@ -6,7 +6,11 @@ namespace Assembly
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //MQTT
+            MQTT mqtt = new MQTT();
+            _ = mqtt.RunExample();
+
+            Console.ReadKey();
         }
     }
 }

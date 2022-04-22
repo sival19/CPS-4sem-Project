@@ -1,0 +1,21 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "http://localhost:8081/Service.asmx?wsdl"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, WarehouseService"
+    ],
+    "references": [
+      "MQTTnet, {MQTTnet, 3.1.2}",
+      "RestSharp, {RestSharp, 107.3.0}",
+      "System.Text.Json, {System.Text.Json, 5.0.0}"
+    ],
+    "targetFramework": "netcoreapp3.1",
+    "typeReuseMode": "All"
+  }
+}

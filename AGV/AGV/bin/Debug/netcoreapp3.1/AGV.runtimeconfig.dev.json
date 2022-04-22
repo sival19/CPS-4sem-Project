@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\iceha\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\iceha\\.nuget\\packages"
+    ]
+  }
+}

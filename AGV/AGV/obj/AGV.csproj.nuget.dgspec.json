@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\iceha\\OneDrive\\Skrivebord\\NuGets": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://gitlab.sdu.dk/api/v4/projects/4095/packages/nuget/index.json": {}
         },
@@ -40,6 +41,16 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[107.3.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

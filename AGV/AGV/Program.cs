@@ -2,11 +2,16 @@
 
 namespace AGV
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //REST
+            REST rest = new REST();
+            _ = rest.RunExample();
+           
+
+            Console.ReadKey();
         }
     }
 }
