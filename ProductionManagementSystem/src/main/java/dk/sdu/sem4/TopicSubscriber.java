@@ -13,12 +13,12 @@ public class TopicSubscriber {
     public static void main(String[] args) {
         //HazelcastInstance hz = Hazelcast.newHazelcastInstance();
         HazelcastInstance hz = getHazelcastInstance();
-        ITopic<String> co2Topic = hz.getTopic("CO2Topic");
-        ITopic<String> temperatureTopic = hz.getTopic("TemperatureTopic");
-        System.out.println("Subscriber added to Temperature Topic");
+        ITopic<String> co2Topic = hz.getTopic("Test-Topic");
+//        ITopic<String> temperatureTopic = hz.getTopic("TemperatureTopic");
+//        System.out.println("Subscriber added to Temperature Topic");
         co2Topic.addMessageListener(new TopicListener());
-        temperatureTopic.addMessageListener(new TopicListener());
-        System.out.println("Subscriber added to CO2 Topic");
+//        temperatureTopic.addMessageListener(new TopicListener());
+//        System.out.println("Subscriber added to CO2 Topic");
     }
     private static HazelcastInstance getHazelcastInstance(){
         //hazelcast address for the clients
