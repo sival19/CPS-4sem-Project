@@ -1,3 +1,5 @@
+package dk.sdu.sem4;
+
 import com.hazelcast.topic.Message;
 
 public class TopicListener implements com.hazelcast.topic.MessageListener<String> {

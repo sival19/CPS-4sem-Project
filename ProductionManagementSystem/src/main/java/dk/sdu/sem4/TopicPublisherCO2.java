@@ -1,3 +1,5 @@
+package dk.sdu.sem4;
+
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.core.Hazelcast;

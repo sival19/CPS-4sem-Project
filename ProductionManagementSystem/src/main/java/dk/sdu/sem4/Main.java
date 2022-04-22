@@ -1,3 +1,5 @@
+package dk.sdu.sem4;
+
 import java.util.Collection;
 import java.util.Date;
 
