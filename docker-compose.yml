@@ -25,4 +25,4 @@ services:
   hazelcast:
     image: hazelcast/hazelcast:latest
     ports:
-      - 5701
+      - 5701:5701
