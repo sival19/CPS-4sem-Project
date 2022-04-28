@@ -2,24 +2,13 @@ package dk.sdu.sem4;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
-import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.topic.ITopic;
 
-public class TopicPublisherCO2 {
+public class HazelCastInstance implements IHazelCastInstance {
     private static final String HAZELCAST_HOST = "127.0.0.1";
     private static final int HAZELCAST_PORT = 5701;
 
-    public static void main (String args[]){
-        // get Hazelcast instance
-        //HazelcastInstance hz = Hazelcast.newHazelcastInstance();
-        HazelcastInstance hz = getHazelcastInstance();
-        // publish to topic, creates a new if it doesn't exist
-        ITopic<String> topic = hz.getTopic("CO2Topic");
-        topic.publish("CO2 data");
-        System.out.println("Message published by topic publisher CO2");
-    }
-    private static HazelcastInstance getHazelcastInstance(){
+    public HazelcastInstance HazelcastInstance() {
         //hazelcast address for the clients
         String hazelcastAddress = String.format("%s:%d", HAZELCAST_HOST, HAZELCAST_PORT);
         ClientConfig clientConfig = new ClientConfig();

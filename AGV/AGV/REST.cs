@@ -1,9 +1,9 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+
 namespace AGV
 {
     public class REST
@@ -17,11 +17,11 @@ namespace AGV
         private RestRequest request = new RestRequest("v1/status/");
 
         //runner
-        public async Task RunExample()
-        {
-            GetStatus();
-            PutOperation();
-        }
+        // public async Task RunExample()
+        // {
+        //     GetStatus();
+        //     PutOperation();
+        // }
 
         //test PUT request
         public async void PutOperation()
@@ -40,16 +40,17 @@ namespace AGV
             Console.WriteLine(msg);
 
             //PUT request
-            var response = await client.PutAsync(putRequest);
+            // var response = await client.PutAsync(putRequest);
             // Console.WriteLine("PUT request response" + response.Content);
         }
 
         //test status method
-        public async void GetStatus()
+        public async Task<string> GetStatus(string request)
         {
             //GET request
-            RestResponse response = await client.GetAsync(request);
-            Console.WriteLine("GET request response: " + response.Content);        
+            RestResponse response = await client.GetAsync(new RestRequest(request));
+            string s = response.Content;
+            return s;
         }
     }
 

@@ -1,26 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/AGV/AGV/AGV.csproj": {}
+    "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj": {}
   },
   "projects": {
-    "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/AGV/AGV/AGV.csproj": {
+    "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/AGV/AGV/AGV.csproj",
+        "projectUniqueName": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj",
         "projectName": "AGV",
-        "projectPath": "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/AGV/AGV/AGV.csproj",
-        "packagesPath": "/home/jeppe/.nuget/packages/",
-        "outputPath": "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/AGV/AGV/obj/",
+        "projectPath": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj",
+        "packagesPath": "C:\\Users\\iceha\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/jeppe/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\iceha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\iceha\\OneDrive\\Skrivebord\\NuGets": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://gitlab.sdu.dk/api/v4/projects/4095/packages/nuget/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
@@ -40,7 +44,7 @@
           "dependencies": {
             "Hazelcast.Net": {
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[4.0.1, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -66,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

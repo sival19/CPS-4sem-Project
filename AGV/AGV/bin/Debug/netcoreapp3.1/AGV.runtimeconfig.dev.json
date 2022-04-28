@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "/home/jeppe/.dotnet/store/|arch|/|tfm|",
-      "/home/jeppe/.nuget/packages"
+      "C:\\Users\\iceha\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\iceha\\.nuget\\packages"
     ]
   }
 }
