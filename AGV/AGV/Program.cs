@@ -24,12 +24,9 @@ namespace AGV
             REST request = new REST();
             string s = request.GetStatus("v1/status/").Result;
 
-
-
+            
             while (true)
             {
-                
-                Thread.Sleep(2000);
                 await PublishTopic("Topic", s);
             }
         }
