@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\Warehouse\\Warehouse\\Warehouse.csproj": {}
+    "C:\\Users\\marga\\Desktop\\Project4\\CPS-4sem-Project\\Warehouse\\Warehouse\\Warehouse.csproj": {}
   },
   "projects": {
-    "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\Warehouse\\Warehouse\\Warehouse.csproj": {
+    "C:\\Users\\marga\\Desktop\\Project4\\CPS-4sem-Project\\Warehouse\\Warehouse\\Warehouse.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\Warehouse\\Warehouse\\Warehouse.csproj",
+        "projectUniqueName": "C:\\Users\\marga\\Desktop\\Project4\\CPS-4sem-Project\\Warehouse\\Warehouse\\Warehouse.csproj",
         "projectName": "Warehouse",
-        "projectPath": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\Warehouse\\Warehouse\\Warehouse.csproj",
-        "packagesPath": "C:\\Users\\iceha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\Warehouse\\Warehouse\\obj\\",
+        "projectPath": "C:\\Users\\marga\\Desktop\\Project4\\CPS-4sem-Project\\Warehouse\\Warehouse\\Warehouse.csproj",
+        "packagesPath": "C:\\Users\\marga\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marga\\Desktop\\Project4\\CPS-4sem-Project\\Warehouse\\Warehouse\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\iceha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\marga\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,9 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\iceha\\OneDrive\\Skrivebord\\NuGets": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://gitlab.sdu.dk/api/v4/projects/4095/packages/nuget/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
@@ -42,6 +40,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Hazelcast.Net": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            },
             "System.ServiceModel.Duplex": {
               "target": "Package",
               "version": "[4.7.0, )"
