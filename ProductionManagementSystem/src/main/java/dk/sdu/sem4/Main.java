@@ -1,20 +1,20 @@
 package dk.sdu.sem4;
 
 import dk.sdu.sem4.AGV.AGVsubscriber;
+import dk.sdu.sem4.Warehouse.WarehouseSubscriber;
 
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        AGVsubscriber agv = new AGVsubscriber();
+        WarehouseSubscriber wh = new WarehouseSubscriber();
 
         boolean running = true;
         System.out.println(
                 "Welcome to The Aswesome System\n" +
                         "Press 1 for AGV status\n" +
-                        "Press 2 To send a command to the AGV\n" +
+                        "Press 2 To send a command to the Warehouse\n" +
                         "Press 3 to shut this down"
         );
 
@@ -22,10 +22,10 @@ public class Main {
             while (running) {
                 switch (s.nextLine()) {
                     case "1":
-                        System.out.println("AGV status is: ");
+                        System.out.println("Warehouse status is: ");
 
                         //get message from AGV
-                        agv.getMessage();
+                        wh.getMessage();
 
                         break;
                     case "2":
