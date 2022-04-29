@@ -18,8 +18,9 @@ namespace Assembly
         MqttFactory factory;
         IMqttClient client;
         IMqttClientOptions options;
+        private String message;
 
-        private async Task Connect()
+        public async Task Connect()
         {
             //init MQTT vars
             factory = new MqttFactory();
@@ -46,13 +47,35 @@ namespace Assembly
             });
 
             //on receive message on subscribed topic
-            client.UseApplicationMessageReceivedHandler(e =>
-            {
-                Console.WriteLine($"MQTT Subscribed message: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}");
-            });
+            // client.UseApplicationMessageReceivedHandler(e =>
+            // {
+            //     String s = $"MQTT Subscribed message: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}";
+            //     Console.WriteLine(s + "Jeg er her");
+            // });
 
             //connect
             await client.ConnectAsync(options);
+        }
+        
+        public void setMessage(String value)
+        {
+            message = value;
+        }
+
+        public String getMessage()
+        {
+            client.UseApplicationMessageReceivedHandler(e =>
+            {
+                setMessage($"MQTT Subscribed message: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}");
+                // Console.WriteLine(message + "Jeg er her");
+            });
+
+            return message;
+        }
+
+        public String getMessagevalue()
+        {
+            return message;
         }
 
 
