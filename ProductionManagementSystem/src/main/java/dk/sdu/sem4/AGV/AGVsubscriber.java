@@ -12,8 +12,12 @@ public class AGVsubscriber {
         return message;
     }
 
+    public void SendMessage(){
+        topicSubscriber.PublishMessage("AGVPubTopic");
+    }
+
     public AGVsubscriber() {
         topicSubscriber = new TopicHandler();
-        topicSubscriber.TopicSubscriber("Topic");
+        topicSubscriber.TopicSubscriber("AGVSubTopic");
     }
 }

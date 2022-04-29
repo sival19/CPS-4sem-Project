@@ -30,6 +30,7 @@ public class Main {
                         break;
                     case "2":
                         System.out.println("TODO");
+                        agv.SendMessage();
                         break;
                     case "3":
                         System.out.println("Why would you quit ME?!");
