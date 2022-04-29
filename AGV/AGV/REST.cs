@@ -45,7 +45,12 @@ namespace AGV
         }
 
         //test status method
-        public async Task<string> GetStatus(string request)
+        /// <summary>
+        /// Make a get request for AGV using REST protocol
+        /// </summary>
+        /// <param name="request">Get Request</param>
+        /// <returns></returns>
+        public async Task<string> GetRequest(string request)
         {
             //GET request
             RestResponse response = await client.GetAsync(new RestRequest(request));

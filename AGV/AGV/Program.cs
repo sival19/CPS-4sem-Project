@@ -8,6 +8,7 @@ namespace AGV
 {
     public class Program
     {
+        private static string statusRequest = "v1/status/";
     
         
         static async Task PublishTopic(string tp, string message)
@@ -22,7 +23,9 @@ namespace AGV
         static async Task Main(string[] args)
         {
             REST request = new REST();
-            string s = request.GetStatus("v1/status/").Result;
+            string s = request.GetRequest(statusRequest).Result;
+            
+            // request.PutOperation();
 
             
             while (true)

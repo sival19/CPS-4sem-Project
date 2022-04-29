@@ -17,14 +17,14 @@ public class TopicSubscriber {
         IHazelCastInstance instance = new HazelCastInstance();
         var hz = instance.HazelcastInstance();
 
-
-        System.out.println(hz.getDistributedObjects());
-        for (DistributedObject d : hz.getDistributedObjects()) {
-            ITopic<String> topic = hz.getTopic(d.getName());
-            System.out.println("Subscriber added to" + d.getName() + " Topic");
-            topic.addMessageListener(tp);
-
-        }
+        ITopic<String> topic = hz.getTopic("Topic");
+        topic.addMessageListener(tp);
+//        System.out.println(hz.getDistributedObjects());
+//        for (DistributedObject d : hz.getDistributedObjects()) {
+//            ITopic<String> topic = hz.getTopic(d.getName());
+//            System.out.println("Subscriber added to" + d.getName() + " Topic");
+//            topic.addMessageListener(tp);
+//        }
     }
 
     public void getMessage(String type) {
