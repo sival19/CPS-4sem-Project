@@ -1,4 +1,4 @@
-package dk.sdu.sem4;
+package dk.sdu.sem4.Hazelcast;
 
 import com.hazelcast.topic.Message;
 
