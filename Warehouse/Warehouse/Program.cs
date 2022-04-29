@@ -8,6 +8,7 @@ namespace Warehouse
 {
     internal class Program
     {
+        private static string SOAPmessage;
         static async Task PublishTopic(string tp, string message)
         {
             await using var client = await HazelcastClientFactory.StartNewClientAsync();
@@ -16,26 +17,27 @@ namespace Warehouse
         }
          static async Task startSOAP()
                 {
-                    //SOAP
-                    //SOAP soap = new SOAP();
-                    //_ = soap.RunExample();
-
-                    //Console.ReadKey();
+                    //instatiate web service from 'Connected Services' reference through Visual Studio tool
+                   var service = new EmulatorServiceClient();
+                   
+                   //print response of GetInventoryAsync()
+                   var response = await service.GetInventoryAsync();
+                   SOAPmessage = response;
+                   Console.WriteLine("SOAPmessage" + SOAPmessage);
                 }
         
 
 
         static async Task Main(string[] args)
         {
-            // make a SOAP request here
-            string s = "HelloSOAP";
-            
+            startSOAP();
+          
             // request.PutOperation();
 
             
             while (true)
             {
-                await PublishTopic("WarehousePubTopic", s);
+                await PublishTopic("WarehousePubTopic", "HelloSOAP");
             }
         }
     }
