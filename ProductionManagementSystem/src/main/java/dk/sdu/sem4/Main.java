@@ -29,7 +29,7 @@ public class Main {
                         System.out.println("TODO");
                         break;
                     case "3":
-                        System.out.println("Why would you quit ME?!");
+                        System.out.println("Why would you quit");
                         running = false;
                         System.exit(0);
                         break;
