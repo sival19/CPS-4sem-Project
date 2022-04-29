@@ -77,3 +77,34 @@ C:\Users\iceha\OneDrive\Skrivebord\Project\CPS-4sem-Project\AGV\AGV\obj\Debug\ne
 C:\Users\iceha\OneDrive\Skrivebord\Project\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.dll
 C:\Users\iceha\OneDrive\Skrivebord\Project\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.pdb
 C:\Users\iceha\OneDrive\Skrivebord\Project\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.genruntimeconfig.cache
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\AGV.exe
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\AGV.deps.json
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\AGV.runtimeconfig.json
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\AGV.runtimeconfig.dev.json
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\AGV.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\AGV.pdb
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\Hazelcast.Net.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.CommandLine.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.EnvironmentVariables.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\RestSharp.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.csproj.AssemblyReference.cache
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.AssemblyInfoInputs.cache
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.AssemblyInfo.cs
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.csproj.CoreCompileInputs.cache
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.csproj.CopyComplete
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.dll
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.pdb
+C:\Users\Ivers\Desktop\Uni\4. semester\Projekt\Code\CPS-4sem-Project\AGV\AGV\obj\Debug\netcoreapp3.1\AGV.genruntimeconfig.cache

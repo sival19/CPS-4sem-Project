@@ -31,6 +31,7 @@ public class Main {
                     case "3":
                         System.out.println("Why would you quit ME?!");
                         running = false;
+                        System.exit(0);
                         break;
                 }
             }
