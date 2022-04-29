@@ -30,14 +30,15 @@ namespace Warehouse
 
         static async Task Main(string[] args)
         {
-            startSOAP();
+            SOAP soap = new SOAP();
+            await soap.getInventory();
           
             // request.PutOperation();
 
             
             while (true)
             {
-                await PublishTopic("WarehousePubTopic", "HelloSOAP");
+                await PublishTopic("WarehousePubTopic", await soap.getInventory());
             }
         }
     }
