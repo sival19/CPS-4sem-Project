@@ -1,14 +1,14 @@
 package dk.sdu.sem4;
 
+import dk.sdu.sem4.AGV.AGVsubscriber;
+
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        TopicSubscriber topicSubscriber = new TopicSubscriber();
-        topicSubscriber.TopicSubscriber();
-
+        AGVsubscriber agv = new AGVsubscriber();
 
         boolean running = true;
         System.out.println(
@@ -23,7 +23,10 @@ public class Main {
                 switch (s.nextLine()) {
                     case "1":
                         System.out.println("AGV status is: ");
-                        topicSubscriber.getMessage("AGV");
+
+                        //get message from AGV
+                        agv.getMessage();
+
                         break;
                     case "2":
                         System.out.println("TODO");
