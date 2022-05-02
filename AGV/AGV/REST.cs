@@ -1,20 +1,24 @@
-﻿using Newtonsoft.Json;
+﻿using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
+using System.IO;
+using System.Net;
 using System.Threading;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace AGV
 {
     public class REST
     {
-        public REST() 
+        public REST()
         {
         }
 
         //init REST
         private RestClient client = new RestClient("http://localhost:8082");
         private RestRequest request = new RestRequest("v1/status/");
+        private string url = "http://localhost:8082/v1/status/";
 
         //runner
         // public async Task RunExample()
@@ -22,26 +26,70 @@ namespace AGV
         //     GetStatus();
         //     PutOperation();
         // }
-
+        
+        
         //test PUT request
-        public async void PutOperation()
+        public async void PutOperation(string name, int state, bool onlyStatus)
         {
-            //build json content string
-           
-            var msg = new OperationMessage();
-            msg.State = 1;
-            msg.Programname = "MoveToAssemblyOperation";
-
-            //new request obj
-            RestRequest putRequest = request;
-            putRequest.AddJsonBody(msg);//add body
-            putRequest.RequestFormat = DataFormat.Json;//define format
+            string messageBody;
+            if (!onlyStatus)
+            {
+                messageBody = "{" +
+                              "\"program name\": " +
+                              "\"" + name + "\"," +
+                              "\"state\": " + state.ToString()+"}";
+            }
+            else
+            {
+                messageBody = "{" +
+                              "\"state\": " + state.ToString()+"}";
+            }
             
-            Console.WriteLine(msg);
+            // string messageBody = "{" +
+            //                      "\"program name\": " +
+            //                      "\"" + name + "\"," +
+            //                      "\"state\": " + state.ToString()+"}";
 
-            //PUT request
-            // var response = await client.PutAsync(putRequest);
-            // Console.WriteLine("PUT request response" + response.Content);
+            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            
+            httpRequest.Method = "PUT";
+
+            httpRequest.ContentType = "application/json";
+            
+            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+            {
+                streamWriter.Write(messageBody);
+            }
+
+            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+            }
+            
+        }
+        public async void PutOperation(int state)
+        {
+            string messageBody = "{" +
+                                 "\"state\": " + state+"}";
+
+            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            
+            httpRequest.Method = "PUT";
+
+            httpRequest.ContentType = "application/json";
+            
+            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+            {
+                streamWriter.Write(messageBody);
+            }
+
+            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+            }
+            
         }
 
         //test status method
@@ -60,11 +108,12 @@ namespace AGV
     }
 
     //class to serialize json objects
-    public class OperationMessage
-    {
-        //tag forces the name of the json attribute on serialization to the specified PropertyName
-        [JsonProperty(PropertyName = "Program name")]
-        public string Programname { get; set; }
-        public int State { get; set; }
-    }
+    // public class OperationMessage
+    // {
+    //     //tag forces the name of the json attribute on serialization to the specified PropertyName
+    //     [JsonProperty(PropertyName = "program name")]
+    //     public string Program_name { get; set; }
+    //
+    //     public int State { get; set; }
+    // }
 }
