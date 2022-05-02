@@ -63,29 +63,6 @@ namespace AGV
             }
             
         }
-        public async void PutOperation(int state)
-        {
-            string messageBody = "{" +
-                                 "\"state\": " + state+"}";
-
-            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-            
-            httpRequest.Method = "PUT";
-
-            httpRequest.ContentType = "application/json";
-            
-            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
-            {
-                streamWriter.Write(messageBody);
-            }
-
-            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                var result = streamReader.ReadToEnd();
-            }
-            
-        }
 
         //test status method
         /// <summary>

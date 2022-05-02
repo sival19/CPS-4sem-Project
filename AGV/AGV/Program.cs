@@ -29,12 +29,17 @@ namespace AGV
 
 
 
-        private static void putMethodRest(string name, int status)
+        /// <summary>
+        /// Loads an operation to the AGV and excecutes it
+        /// </summary>
+        /// <param name="name">Name of the operation to send</param>
+        private static void putMethodRest(string name)
         {
             REST request = new REST();
             // string s = request.GetRequest(statusRequest).Result;
             
-            request.PutOperation(name, status, false);
+            request.PutOperation(name, 1, false);
+            Thread.Sleep(1000);
             request.PutOperation(name, 2, true);
         }
 
@@ -44,7 +49,7 @@ namespace AGV
             await using var client = await HazelcastClientFactory.StartNewClientAsync();
             await using var topic = await client.GetTopicAsync<String>("AGVPubTopic");
 
-            putMethodRest("MoveToChargerOperation", 1);
+            putMethodRest("MoveToChargerOperation");
             
             
             REST request = new REST();
