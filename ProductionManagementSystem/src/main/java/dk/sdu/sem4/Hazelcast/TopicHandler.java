@@ -19,10 +19,10 @@ public class TopicHandler {
 
 
 
-    public void PublishMessage(String TheTopic){
+    public void PublishMessage(String TheTopic, String message){
         var hz = instance.HazelcastInstance();
         ITopic<String> topic = hz.getTopic(TheTopic);
-        topic.publish("helllooooooooo wooooooooorrrrrrrrrllllllllllldddddddd");
+        topic.publish(message);
     }
 
     public String getMessage() {

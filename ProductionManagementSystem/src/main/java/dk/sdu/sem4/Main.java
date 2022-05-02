@@ -23,14 +23,11 @@ public class Main {
                 switch (s.nextLine()) {
                     case "1":
                         System.out.println("AGV status is: ");
-
                         //get message from AGV
                         agv.getMessage();
-
                         break;
                     case "2":
-                        System.out.println("TODO");
-                        agv.SendMessage();
+                        agv.SendMessage("hello world");
                         break;
                     case "3":
                         System.out.println("Why would you quit ME?!");

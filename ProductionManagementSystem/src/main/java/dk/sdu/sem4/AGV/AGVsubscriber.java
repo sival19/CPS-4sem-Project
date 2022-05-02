@@ -12,8 +12,12 @@ public class AGVsubscriber {
         return message;
     }
 
-    public void SendMessage(){
-        topicSubscriber.PublishMessage("AGVPubTopic");
+    /**
+     *
+     * @param action what will be sent
+     */
+    public void SendMessage(String action){
+        topicSubscriber.PublishMessage("AGVPubTopic", action);
     }
 
     public AGVsubscriber() {
