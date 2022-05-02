@@ -44,11 +44,6 @@ namespace AGV
                 messageBody = "{" +
                               "\"state\": " + state.ToString()+"}";
             }
-            
-            // string messageBody = "{" +
-            //                      "\"program name\": " +
-            //                      "\"" + name + "\"," +
-            //                      "\"state\": " + state.ToString()+"}";
 
             var httpRequest = (HttpWebRequest)WebRequest.Create(url);
             
@@ -106,14 +101,4 @@ namespace AGV
             return s;
         }
     }
-
-    //class to serialize json objects
-    // public class OperationMessage
-    // {
-    //     //tag forces the name of the json attribute on serialization to the specified PropertyName
-    //     [JsonProperty(PropertyName = "program name")]
-    //     public string Program_name { get; set; }
-    //
-    //     public int State { get; set; }
-    // }
 }
