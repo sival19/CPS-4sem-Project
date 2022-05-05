@@ -1,8 +1,8 @@
-package dk.sdu.sem4.AGV;
+package dk.sdu.sem4.Logic.AGV;
 
-import dk.sdu.sem4.Hazelcast.TopicHandler;
+import dk.sdu.sem4.Logic.Hazelcast.TopicHandler;
 
-public class AGVsubscriber {
+public class AGVsubscriber implements IAGVsubscriber {
 
     private TopicHandler topicSubscriber;
     private String message;
