@@ -12,8 +12,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        IAGVsubscriber agv = new AGVsubscriber();
         IWHsubscriber wh = new WarehouseSubscriber();
+        IAGVsubscriber agv = new AGVsubscriber();
 
         boolean running = true;
 
@@ -29,7 +29,8 @@ public class Main {
                 "Press 6 to send AGV to Activate the robot arm to pick payload from the warehouse outlet\n" +
                 "Press 7 to send AGV to Activate the robot arm to place an item at the warehouse inlet\n" +
                 "Press 8 to get Warehouse inventory\n" +
-                "Press 9 to shut this down\n" +
+                "Press 9 to insert item in Warehouse\n" +
+                "Press 10 to shut this down\n" +
                 "Write help to see the available commands";
 
         System.out.println(helpString);
@@ -62,7 +63,8 @@ public class Main {
                         System.out.println(wh.getMessage());
                         break;
                     case "9":
-                        wh.SendMessage("InsertItem");
+                        System.out.printf("Sending message to Warehouse...\n");
+                        wh.SendMessage("PickItem 2");
                         break;
                     case "10":
                         System.out.println("Dont leave me hanging :(");

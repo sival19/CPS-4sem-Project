@@ -1,6 +1,5 @@
 package dk.sdu.sem4.Logic.WH;
 import dk.sdu.sem4.Domain.TopicHandler;
-//import dk.sdu.sem4.Hazelcast.TopicHandler;
 
 public class WarehouseSubscriber implements IWHsubscriber {
 
@@ -9,7 +8,7 @@ public class WarehouseSubscriber implements IWHsubscriber {
 
     @Override
     public void SendMessage(String action) {
-        topicSubscriber.PublishMessage("WarehouseTopic", action);
+        topicSubscriber.PublishMessage("WarehouseFromJava", action);
     }
 
     public String getMessage() {
@@ -19,6 +18,6 @@ public class WarehouseSubscriber implements IWHsubscriber {
 
     public WarehouseSubscriber() {
         topicSubscriber = new TopicHandler();
-        topicSubscriber.TopicSubscriber("WarehouseTopic");
+        topicSubscriber.TopicSubscriber("WarehouseToJava");
     }
 }
