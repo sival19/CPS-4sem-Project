@@ -1,4 +1,4 @@
-package dk.sdu.sem4.Hazelcast;
+package dk.sdu.sem4.Domain.Hazelcast;
 
 import com.hazelcast.core.HazelcastInstance;
 
