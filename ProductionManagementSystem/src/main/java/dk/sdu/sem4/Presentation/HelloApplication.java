@@ -1,5 +1,7 @@
 package dk.sdu.sem4.Presentation;
 
+import dk.sdu.sem4.Logic.AGV.AGVsubscriber;
+import dk.sdu.sem4.Logic.AGV.IAGVsubscriber;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,7 +16,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 700, 240);
         stage.setTitle("hello");
         stage.setScene(scene);
         stage.show();
