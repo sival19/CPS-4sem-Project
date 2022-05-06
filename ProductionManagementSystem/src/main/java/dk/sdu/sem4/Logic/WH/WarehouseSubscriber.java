@@ -1,10 +1,16 @@
-package dk.sdu.sem4.Warehouse;
-import dk.sdu.sem4.Hazelcast.TopicHandler;
+package dk.sdu.sem4.Logic.WH;
+import dk.sdu.sem4.Domain.TopicHandler;
+//import dk.sdu.sem4.Hazelcast.TopicHandler;
 
-public class WarehouseSubscriber {
+public class WarehouseSubscriber implements IWHsubscriber {
 
     private TopicHandler topicSubscriber;
     private String message;
+
+    @Override
+    public void SendMessage(String action) {
+
+    }
 
     public String getMessage() {
         message = topicSubscriber.getMessage();

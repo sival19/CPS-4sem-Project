@@ -1,7 +1,6 @@
 package dk.sdu.sem4;
 
-import dk.sdu.sem4.AGV.AGVsubscriber;
-import dk.sdu.sem4.Warehouse.WarehouseSubscriber;
+import dk.sdu.sem4.Logic.WH.WarehouseSubscriber;
 
 import java.util.Scanner;
 
