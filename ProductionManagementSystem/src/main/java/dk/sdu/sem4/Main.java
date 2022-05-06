@@ -1,6 +1,7 @@
 package dk.sdu.sem4;
 
 import dk.sdu.sem4.AGV.AGVsubscriber;
+import dk.sdu.sem4.AssemblyLine.AssemblySubscriber;
 
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         AGVsubscriber agv = new AGVsubscriber();
+        AssemblySubscriber assemblySubscriber = new AssemblySubscriber();
 
         boolean running = true;
         System.out.println(
@@ -29,7 +31,9 @@ public class Main {
 
                         break;
                     case "2":
-                        System.out.println("TODO");
+                        System.out.println("Assembly status is: ");
+
+                        assemblySubscriber.getMessage();
                         break;
                     case "3":
                         System.out.println("Why would you quit");

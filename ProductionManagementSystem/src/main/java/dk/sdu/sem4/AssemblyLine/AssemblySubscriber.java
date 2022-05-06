@@ -14,6 +14,6 @@ public class AssemblySubscriber {
 
     public AssemblySubscriber() {
         topicSubscriber = new TopicHandler();
-        topicSubscriber.TopicSubscriber("Topic");
+        topicSubscriber.TopicSubscriber("Assembly");
     }
 }

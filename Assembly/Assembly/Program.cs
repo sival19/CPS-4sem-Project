@@ -11,7 +11,7 @@ namespace Assembly
         private static string statusRequest = "v1/status/";
     
         
-        static async Task PublishTopic(string tp, string message)
+        public async Task PublishTopic(string tp, string message)
         {
             await using var client = await HazelcastClientFactory.StartNewClientAsync();
             await using var topic = await client.GetTopicAsync<String>(tp);
@@ -25,10 +25,14 @@ namespace Assembly
             while (true)
             {
                 MQTT request = new MQTT();
-                // await request.Connect();
+                await request.Connect();
 
-                await  request.RunExample();
+                // await  request.RunExample();
                 // request.getMessage();
+                var msg = new MQTTMessage();
+                msg.ProcessID = 9999;
+                await request.PublishOnTopic("emulator/operation", JsonConvert.SerializeObject(msg));
+                
                 Console.WriteLine(request.getMessage());
                 // Console.WriteLine(request.Connect() + "Jeg er her");
                 Thread.Sleep(2000);

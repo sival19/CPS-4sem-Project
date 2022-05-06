@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using MQTTnet.Server;
 
 namespace Assembly
 {
@@ -18,7 +19,8 @@ namespace Assembly
         MqttFactory factory;
         IMqttClient client;
         IMqttClientOptions options;
-        private String message;
+        string message;
+        private Program _program = new Program();
 
         public async Task Connect()
         {
@@ -62,15 +64,24 @@ namespace Assembly
             message = value;
         }
 
-        public String getMessage()
+        public string getMessage()
         {
             client.UseApplicationMessageReceivedHandler(e =>
             {
-                setMessage($"MQTT Subscribed message: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}");
-                // Console.WriteLine(message + "Jeg er her");
-            });
+                message = ($"MQTT Subscribed message: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}");
+                _program.PublishTopic("Assembly", message);
 
-            return message;
+                Console.WriteLine(message + "Jeg er her");
+                // OnNewMessage(e);
+            });
+            // Console.WriteLine(message + "Jeg er her");
+
+            return message + "Hej";
+        }
+
+        public static void OnNewMessage(MqttApplicationMessageReceivedEventArgs context)
+        {
+            var payload = context.ApplicationMessage.Payload;
         }
 
         public String getMessagevalue()

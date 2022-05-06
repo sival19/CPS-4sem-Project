@@ -536,29 +536,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\iceha\\.nuget\\packages\\": {}
+    "/home/jeppe/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj",
+      "projectUniqueName": "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/AGV/AGV/AGV.csproj",
       "projectName": "AGV",
-      "projectPath": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\AGV.csproj",
-      "packagesPath": "C:\\Users\\iceha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\iceha\\OneDrive\\Skrivebord\\Project\\CPS-4sem-Project\\AGV\\AGV\\obj\\",
+      "projectPath": "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/AGV/AGV/AGV.csproj",
+      "packagesPath": "/home/jeppe/.nuget/packages/",
+      "outputPath": "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/AGV/AGV/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\iceha\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/jeppe/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\iceha\\OneDrive\\Skrivebord\\NuGets": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://gitlab.sdu.dk/api/v4/projects/4095/packages/nuget/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
@@ -604,7 +600,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.201/RuntimeIdentifierGraph.json"
       }
     }
   }
