@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/AGV/AGV/AGV.csproj": {}
+    "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/Assembly/Assembly/Assembly.csproj": {}
   },
   "projects": {
-    "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/AGV/AGV/AGV.csproj": {
+    "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/Assembly/Assembly/Assembly.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/AGV/AGV/AGV.csproj",
-        "projectName": "AGV",
-        "projectPath": "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/AGV/AGV/AGV.csproj",
+        "projectUniqueName": "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/Assembly/Assembly/Assembly.csproj",
+        "projectName": "Assembly",
+        "projectPath": "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/Assembly/Assembly/Assembly.csproj",
         "packagesPath": "/home/jeppe/.nuget/packages/",
-        "outputPath": "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/AGV/AGV/obj/",
+        "outputPath": "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/Assembly/Assembly/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/jeppe/.nuget/NuGet/NuGet.Config"
@@ -42,13 +42,13 @@
               "target": "Package",
               "version": "[4.0.1, )"
             },
+            "MQTTnet": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
-            },
-            "RestSharp": {
-              "target": "Package",
-              "version": "[107.3.0, )"
             }
           },
           "imports": [

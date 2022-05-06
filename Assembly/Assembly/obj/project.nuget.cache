@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LXxDRuPRJ7M6niedLAWwaj/PZk71IDiKtMpIiK9oEv/ogZ9PLtVD3v0nAvkPw4L0i7fd2SKLrCg5jfrlins8Rg==",
+  "dgSpecHash": "9gDg2mVPIHadvwJOKoZp67Ygz6aDh/+lC8xNpQQC3IDHKG9abAgTSxNUpKEjpS0ot3FWCAgcc48KU/gBtDi+oA==",
   "success": true,
-  "projectFilePath": "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/AGV/AGV/AGV.csproj",
+  "projectFilePath": "/home/jeppe/Documents/Diplomingeniør_softwaretek/4.semester/CPS-4sem-Project/Assembly/Assembly/Assembly.csproj",
   "expectedPackageFiles": [
     "/home/jeppe/.nuget/packages/hazelcast.net/4.0.1/hazelcast.net.4.0.1.nupkg.sha512",
     "/home/jeppe/.nuget/packages/microsoft.extensions.configuration/5.0.0/microsoft.extensions.configuration.5.0.0.nupkg.sha512",
@@ -16,8 +16,8 @@
     "/home/jeppe/.nuget/packages/microsoft.extensions.filesystemglobbing/5.0.0/microsoft.extensions.filesystemglobbing.5.0.0.nupkg.sha512",
     "/home/jeppe/.nuget/packages/microsoft.extensions.logging.abstractions/5.0.0/microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
     "/home/jeppe/.nuget/packages/microsoft.extensions.primitives/5.0.0/microsoft.extensions.primitives.5.0.0.nupkg.sha512",
+    "/home/jeppe/.nuget/packages/mqttnet/3.1.2/mqttnet.3.1.2.nupkg.sha512",
     "/home/jeppe/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
-    "/home/jeppe/.nuget/packages/restsharp/107.3.0/restsharp.107.3.0.nupkg.sha512",
     "/home/jeppe/.nuget/packages/system.io.pipelines/5.0.1/system.io.pipelines.5.0.1.nupkg.sha512",
     "/home/jeppe/.nuget/packages/system.text.json/5.0.0/system.text.json.5.0.0.nupkg.sha512"
   ],
