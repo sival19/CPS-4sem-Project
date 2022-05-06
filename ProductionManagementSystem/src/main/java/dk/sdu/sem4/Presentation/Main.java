@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
         IAGVsubscriber agv = new AGVsubscriber();
 
         boolean running = true;
