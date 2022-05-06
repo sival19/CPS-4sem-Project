@@ -15,15 +15,18 @@ public class Main {
         boolean running = true;
 
         agv.getMessage();
-        String helpString = "Welcome to The Aswesome System\n" +
-                "Press 1 to send AGV to Cahrger\n" +
+
+        String helpString =
+                "Welcome to The Awesome System\n" +
+                "Press 1 to send AGV to Charger\n" +
                 "Press 2 to send AGV to AssemblyStation\n" +
                 "Press 3 to send AGV to Warehouse\n" +
                 "Press 4 to send AGV to Activate the robot arm to pick payload fromAGV and place it at the assembly station\n" +
                 "Press 5 to send AGV to Activate the robot arm to pick payload at the assembly station and place it on theAGV\n" +
-                "Press 6 to send AGV to Activate the robot arm to pick payload fromthe warehouse outlet\n" +
-                "Press 7 to send AGV to Activate the robot arm to place an item atthe warehouse inlet\n" +
-                "Press 8 to shut this down";
+                "Press 6 to send AGV to Activate the robot arm to pick payload from the warehouse outlet\n" +
+                "Press 7 to send AGV to Activate the robot arm to place an item at the warehouse inlet\n" +
+                "Press 8 to shut this down\n" +
+                "Write help to see the available commands";
 
         System.out.println(helpString);
 

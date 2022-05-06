@@ -12,8 +12,8 @@ namespace AGV
     {
         private static bool _isrunning;
         private static string _valueToMonitor = "";
-        private static string statusRequest = "v1/status/";
-        static REST request = new REST();
+        private static string _statusRequest = "v1/status/";
+        static REST _request = new REST();
         private static string _s;
         private static Regex rx = new Regex("\"state\":.");
 
@@ -45,9 +45,9 @@ namespace AGV
         private static void PutMethodRest(string name)
         {
 
-            request.PutOperation(name, 1, false);
+            _request.PutOperation(name, 1, false);
             Thread.Sleep(1000);
-            request.PutOperation(name, 2, true);
+            _request.PutOperation(name, 2, true);
         }
 
 
@@ -60,7 +60,7 @@ namespace AGV
             await topic.SubscribeAsync(on => on.Message(OnMessage));
             while (_isrunning)
             {
-                _s = request.GetRequest(statusRequest).Result;
+                _s = _request.GetRequest(_statusRequest).Result;
                 Match match2 = rx.Match(_s);
                 var changedValue = match2.Value;
                 if (!_valueToMonitor.Equals(changedValue))

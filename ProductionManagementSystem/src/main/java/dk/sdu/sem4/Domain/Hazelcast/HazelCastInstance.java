@@ -1,4 +1,4 @@
-package dk.sdu.sem4.Logic.Hazelcast;
+package dk.sdu.sem4.Domain.Hazelcast;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
