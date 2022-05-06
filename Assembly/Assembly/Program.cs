@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Assembly
 {
-    internal class Program
+    public class Program
     {
         static MQTT _request = new MQTT();
 
@@ -29,6 +29,7 @@ namespace Assembly
         
         private static void OnMessage(IHTopic<string> sender, TopicMessageEventArgs<string> args)
         {
+            // Thread.Sleep(500);
             Console.WriteLine($"Got message " + args.Payload);
             // var msg = new MQTTMessage();
             // msg.ProcessID = Convert.ToInt32(args.Payload);
@@ -45,9 +46,10 @@ namespace Assembly
             await using var client = await HazelcastClientFactory.StartNewClientAsync();
             await using var topic = await client.GetTopicAsync<String>("AssemblyPubTopic");
             await topic.SubscribeAsync(on => on.Message(OnMessage));
-            
+
             while (true)
             {
+                await topic.SubscribeAsync(on => on.Message(OnMessage));
 
 
                 request.getMessage();
@@ -59,7 +61,7 @@ namespace Assembly
 
                 // Console.WriteLine(request.getMessage());
                 // Console.WriteLine(request.Connect() + "Jeg er her");
-                Thread.Sleep(2000);
+                // Thread.Sleep(2000);
 
             }
 
