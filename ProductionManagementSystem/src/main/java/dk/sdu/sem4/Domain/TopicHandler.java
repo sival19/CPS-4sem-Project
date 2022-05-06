@@ -1,6 +1,8 @@
-package dk.sdu.sem4.Domain.Hazelcast;
+package dk.sdu.sem4.Domain;
 
 import com.hazelcast.topic.ITopic;
+import dk.sdu.sem4.Domain.Hazelcast.HazelCastInstance;
+import dk.sdu.sem4.Domain.Hazelcast.IHazelCastInstance;
 
 
 public class TopicHandler {
