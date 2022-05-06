@@ -8,9 +8,7 @@ namespace Assembly
 {
     internal class Program
     {
-        private static string statusRequest = "v1/status/";
-    
-        
+
         public async Task PublishTopic(string tp, string message)
         {
             await using var client = await HazelcastClientFactory.StartNewClientAsync();
@@ -28,12 +26,12 @@ namespace Assembly
                 await request.Connect();
 
                 // await  request.RunExample();
-                // request.getMessage();
+                request.getMessage();
                 var msg = new MQTTMessage();
-                msg.ProcessID = 9999;
+                msg.ProcessID = 12345;
                 await request.PublishOnTopic("emulator/operation", JsonConvert.SerializeObject(msg));
                 
-                Console.WriteLine(request.getMessage());
+                // Console.WriteLine(request.getMessage());
                 // Console.WriteLine(request.Connect() + "Jeg er her");
                 Thread.Sleep(2000);
                 
