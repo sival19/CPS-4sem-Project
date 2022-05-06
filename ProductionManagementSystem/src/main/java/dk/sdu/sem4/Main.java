@@ -13,7 +13,7 @@ public class Main {
         System.out.println(
                 "Welcome to The Aswesome System\n" +
                         "Press 1 for AGV status\n" +
-                        "Press 2 To send a command to the Warehouse\n" +
+                        "Press 2 for Warehouse status\n" +
                         "Press 3 to shut this down"
         );
 
@@ -24,11 +24,11 @@ public class Main {
                         System.out.println("Warehouse status is: ");
 
                         //get message from AGV
-                        wh.getMessage();
+                        //agv
 
                         break;
                     case "2":
-                        System.out.println("TODO");
+                        wh.getMessage();
                         break;
                     case "3":
                         System.out.println("Why would you quit ME?!");

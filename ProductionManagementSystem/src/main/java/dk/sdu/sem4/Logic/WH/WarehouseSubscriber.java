@@ -9,7 +9,7 @@ public class WarehouseSubscriber implements IWHsubscriber {
 
     @Override
     public void SendMessage(String action) {
-
+        topicSubscriber.PublishMessage("WarehouseTopic", action);
     }
 
     public String getMessage() {
@@ -19,6 +19,6 @@ public class WarehouseSubscriber implements IWHsubscriber {
 
     public WarehouseSubscriber() {
         topicSubscriber = new TopicHandler();
-        topicSubscriber.TopicSubscriber("WarehousePubTopic");
+        topicSubscriber.TopicSubscriber("WarehouseTopic");
     }
 }
