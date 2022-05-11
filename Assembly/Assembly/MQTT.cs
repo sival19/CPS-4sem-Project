@@ -66,18 +66,18 @@ namespace Assembly
 
         public void getMessage()
         {
-            client.UseApplicationMessageReceivedHandler(e =>
+            client.UseApplicationMessageReceivedHandler(async e =>
             {
                 message = ($"MQTT Subscribed message: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}");
                 Match match = rx.Match(message);
                 var changedValue = match.Value;
+                // Console.WriteLine(message);
 
                 if (!_valueToMonitor.Equals(changedValue))
                 {
                     _valueToMonitor = changedValue;
-                    _program.PublishTopic("Assembly", message);
+                    await _program.PublishTopic("Assembly", message);
                 }
-                
 
                 // Console.WriteLine(message + "Jeg er her");
                 // OnNewMessage(e);
