@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using MQTTnet.Server;
 
 namespace Assembly
 {
@@ -18,8 +19,10 @@ namespace Assembly
         MqttFactory factory;
         IMqttClient client;
         IMqttClientOptions options;
+        string message;
+        private Program _program = new Program();
 
-        private async Task Connect()
+        public async Task Connect()
         {
             //init MQTT vars
             factory = new MqttFactory();
@@ -36,7 +39,8 @@ namespace Assembly
             {
                 Console.WriteLine("Connected.");
                 SubscribeToTopic("emulator/status");
-                SubscribeToTopic("emulator/echo");
+                // SubscribeToTopic("emulator/checkhealth");
+                // SubscribeToTopic("emulator/echo");
             });
 
             //on lost connection
@@ -46,13 +50,37 @@ namespace Assembly
             });
 
             //on receive message on subscribed topic
-            client.UseApplicationMessageReceivedHandler(e =>
-            {
-                Console.WriteLine($"MQTT Subscribed message: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}");
-            });
+            // client.UseApplicationMessageReceivedHandler(e =>
+            // {
+            //     String s = $"MQTT Subscribed message: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}";
+            //     Console.WriteLine(s + "Jeg er her");
+            // });
 
             //connect
             await client.ConnectAsync(options);
+        }
+
+        public void getMessage()
+        {
+            client.UseApplicationMessageReceivedHandler(e =>
+            {
+                message = ($"MQTT Subscribed message: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}");
+                _program.PublishTopic("Assembly", message);
+
+                // Console.WriteLine(message + "Jeg er her");
+                // OnNewMessage(e);
+            });
+            // Console.WriteLine(message + "Jeg er her");
+        }
+
+        public static void OnNewMessage(MqttApplicationMessageReceivedEventArgs context)
+        {
+            var payload = context.ApplicationMessage.Payload;
+        }
+
+        public String getMessagevalue()
+        {
+            return message;
         }
 
 

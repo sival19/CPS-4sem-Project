@@ -29,7 +29,7 @@ public class TopicHandler {
 
     public String getMessage() {
             message = tp.getMsg();
-            //System.out.println(message);
+
             return message;
     }
 }

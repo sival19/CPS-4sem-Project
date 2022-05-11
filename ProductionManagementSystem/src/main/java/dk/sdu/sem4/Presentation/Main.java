@@ -12,7 +12,9 @@ public class Main {
 
     public static void main(String[] args) {
 
+
         IWHsubscriber wh = new WarehouseSubscriber();
+
         IAGVsubscriber agv = new AGVsubscriber();
 
         boolean running = true;
