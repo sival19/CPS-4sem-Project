@@ -4,6 +4,7 @@ using MQTTnet.Client.Options;
 using Newtonsoft.Json;
 using System;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MQTTnet.Server;
 
@@ -20,6 +21,9 @@ namespace Assembly
         IMqttClient client;
         IMqttClientOptions options;
         string message;
+        private static string _valueToMonitor = "";
+        private static Regex rx = new Regex("\"CurrentOperation\":.");
+
         private Program _program = new Program();
 
         public async Task Connect()
@@ -62,28 +66,25 @@ namespace Assembly
 
         public void getMessage()
         {
-            client.UseApplicationMessageReceivedHandler(e =>
+            client.UseApplicationMessageReceivedHandler(async e =>
             {
                 message = ($"MQTT Subscribed message: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}");
-                _program.PublishTopic("Assembly", message);
+                Match match = rx.Match(message);
+                var changedValue = match.Value;
+                // Console.WriteLine(message);
+
+                if (!_valueToMonitor.Equals(changedValue))
+                {
+                    _valueToMonitor = changedValue;
+                    await _program.PublishTopic("Assembly", message);
+                }
 
                 // Console.WriteLine(message + "Jeg er her");
                 // OnNewMessage(e);
             });
             // Console.WriteLine(message + "Jeg er her");
         }
-
-        public static void OnNewMessage(MqttApplicationMessageReceivedEventArgs context)
-        {
-            var payload = context.ApplicationMessage.Payload;
-        }
-
-        public String getMessagevalue()
-        {
-            return message;
-        }
-
-
+        
         public async void SubscribeToTopic(string input)
         {
             //printout
@@ -99,9 +100,9 @@ namespace Assembly
         }
 
         //publish method
-        public async Task PublishOnTopic(string msg, string topic)
+        public async Task PublishOnTopic(string topic, string msg)
         {
-            await client.PublishAsync(msg, topic);
+            await client.PublishAsync(topic, msg);
         }
 
         //runner

@@ -1,60 +1,62 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Hazelcast;
-using Newtonsoft.Json;
+using Hazelcast.DistributedObjects;
 
 namespace Assembly
 {
-    internal class Program
+    public class Program
     {
+        static MQTT _request = new MQTT();
+        private static Hazelcast _hazelcast = new Hazelcast();
+        private static IHazelcastClient _client;
+
 
         public async Task PublishTopic(string tp, string message)
         {
-            await using var client = await HazelcastClientFactory.StartNewClientAsync();
-            await using var topic = await client.GetTopicAsync<String>(tp);
+            _client = _hazelcast.HazelcastInstance();
+            await using var topic = await _client.GetTopicAsync<String>(tp);
             await topic.PublishAsync(message);
+        }
+
+        public static async Task ReceiveOnTopic(string tp)
+        {
+            _client = _hazelcast.HazelcastInstance();
+            await using var topic = await _client.GetTopicAsync<String>(tp);
+            await topic.SubscribeAsync(on => on.Message(OnMessage));
+        }
+        
+        /// <summary>
+        /// When receiving a message from java
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private static void OnMessage(IHTopic<string> sender, TopicMessageEventArgs<string> args)
+        {
+            // Thread.Sleep(500);
+            Console.WriteLine($"Got message " + args.Payload);
+            // Thread.Sleep(1000);
+            // var msg = new MQTTMessage();
+            // msg.ProcessID = Convert.ToInt32(args.Payload);
+            // _request.PublishOnTopic("emulator/operation", JsonConvert.SerializeObject(msg));
         }
         
 
 
-        static async Task Main(string[] args)
+        public static async Task Main(string[] args)
         {
+            await _request.Connect();
+            
+            await ReceiveOnTopic("AssemblyPubTopic");
+            _request.getMessage();
+            await Task.Delay(1_00);
+
             while (true)
             {
-                MQTT request = new MQTT();
-                await request.Connect();
-
-                // await  request.RunExample();
-                request.getMessage();
-                var msg = new MQTTMessage();
-                msg.ProcessID = 12345;
-                await request.PublishOnTopic("emulator/operation", JsonConvert.SerializeObject(msg));
-                
-                // Console.WriteLine(request.getMessage());
-                // Console.WriteLine(request.Connect() + "Jeg er her");
-                Thread.Sleep(2000);
-                
             }
-
-            
-            // Console.WriteLine(request.getMessage() + "Jeg er her");
-
-            
-            
-            // var msg = new MQTTMessage();
-            // msg.ProcessID = 12345;
-            // await request.PublishOnTopic("emulator/operation", JsonConvert.SerializeObject(msg));
-            //
-            // String s = await request.PublishOnTopic("emulator/operation", JsonConvert.SerializeObject(msg));
-
-            // request.PutOperation();
-
-            //
-            // while (true)
-            // {
-            //     await PublishTopic("Topic", s);
-            // }
         }
     }
 }

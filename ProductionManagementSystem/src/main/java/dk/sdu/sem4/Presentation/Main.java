@@ -3,8 +3,13 @@ package dk.sdu.sem4.Presentation;
 
 import dk.sdu.sem4.Logic.AGV.AGVsubscriber;
 import dk.sdu.sem4.Logic.AGV.IAGVsubscriber;
+
+import dk.sdu.sem4.Logic.Assembly.AssemblySubscriber;
+import dk.sdu.sem4.Logic.Assembly.IAssemblySubscriber;
+
 import dk.sdu.sem4.Logic.WH.IWHsubscriber;
 import dk.sdu.sem4.Logic.WH.WarehouseSubscriber;
+
 
 import java.util.Scanner;
 
@@ -16,10 +21,16 @@ public class Main {
         IWHsubscriber wh = new WarehouseSubscriber();
 
         IAGVsubscriber agv = new AGVsubscriber();
+        IAssemblySubscriber assembly = new AssemblySubscriber();
 
         boolean running = true;
 
+
+        agv.getMessage();
+        assembly.getMessage();
+
         //wh.getMessage();
+
 
         String helpString =
                 "Welcome to The Awesome System\n" +
@@ -30,9 +41,12 @@ public class Main {
                 "Press 5 to send AGV to Activate the robot arm to pick payload at the assembly station and place it on theAGV\n" +
                 "Press 6 to send AGV to Activate the robot arm to pick payload from the warehouse outlet\n" +
                 "Press 7 to send AGV to Activate the robot arm to place an item at the warehouse inlet\n" +
-                "Press 8 to get Warehouse inventory\n" +
-                "Press 9 to insert item in Warehouse\n" +
+
+                "Press 8 to send operation to Assembly line\n" +
+                "Press 9 to shut this down\n" +
+
                 "Press 10 to shut this down\n" +
+
                 "Write help to see the available commands";
 
         System.out.println(helpString);
@@ -62,9 +76,12 @@ public class Main {
                         agv.SendMessage("PutWarehouseOperation");
                         break;
                     case "8":
-                        System.out.println(wh.getMessage());
+
+                        assembly.SendMessage("123");
                         break;
                     case "9":
+
+                      
                         System.out.printf("Sending message to Warehouse...\n");
                         wh.SendMessage("PickItem 2");
                         break;
