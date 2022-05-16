@@ -44,7 +44,7 @@ namespace Assembly
                 Console.WriteLine("Connected.");
                 SubscribeToTopic("emulator/status");
                 // SubscribeToTopic("emulator/checkhealth");
-                // SubscribeToTopic("emulator/echo");
+                SubscribeToTopic("emulator/echo");
             });
 
             //on lost connection
@@ -69,15 +69,16 @@ namespace Assembly
             client.UseApplicationMessageReceivedHandler(async e =>
             {
                 message = ($"MQTT Subscribed message: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}");
+                await _program.PublishTopic("Assembly", message);
                 Match match = rx.Match(message);
                 var changedValue = match.Value;
-                // Console.WriteLine(message);
+                Console.WriteLine(message);
 
-                if (!_valueToMonitor.Equals(changedValue))
-                {
-                    _valueToMonitor = changedValue;
-                    await _program.PublishTopic("Assembly", message);
-                }
+                // if (!_valueToMonitor.Equals(changedValue))
+                // {
+                //     _valueToMonitor = changedValue;
+                //     await _program.PublishTopic("Assembly", message);
+                // }
 
                 // Console.WriteLine(message + "Jeg er her");
                 // OnNewMessage(e);

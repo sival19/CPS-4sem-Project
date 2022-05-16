@@ -73,11 +73,15 @@ public class Main {
                         agv.SendMessage("PickWarehouseOperation");
                         break;
                     case "7":
-                        agv.SendMessage("PutWarehouseOperation");
+//                        agv.SendMessage("PutWarehouseOperation");
+                        assembly.SendMessage("1234");
                         break;
                     case "8":
 
-                        assembly.SendMessage("123");
+                        assembly.SendMessage("123456");
+//                        System.out.println(assembly.getMessage());
+//                        assembly.getMessage();
+
                         break;
                     case "9":
 
