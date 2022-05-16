@@ -32,5 +32,13 @@ namespace Warehouse
             //Console.WriteLine(SOAPmessage + "\n"); //Print message with a new line
             return SOAPmessage;
         }
+
+        public async Task insertItem(int trayId, string name)
+        {
+            var response = await service.InsertItemAsync(trayId, name);
+            SOAPmessage = response;
+            Console.WriteLine(response);
+            //return SOAPmessage;
+        }
     }
 }
