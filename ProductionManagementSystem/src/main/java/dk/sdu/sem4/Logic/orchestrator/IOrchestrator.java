@@ -11,6 +11,7 @@ public interface IOrchestrator {
     void abortProductionSequence();
     void pauseProductionSequence();
     String getAGVProgram();
+    void startSequence();
 
 
 }

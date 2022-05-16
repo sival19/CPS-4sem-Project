@@ -40,6 +40,7 @@ public class HelloController implements Initializable {
     // production control buttons
     @FXML
     protected void onStartProductionClick(){
+        orchestrator.startSequence();
         System.out.println("Production start button clicked");
     }
 

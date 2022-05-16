@@ -8,23 +8,20 @@ import org.json.JSONObject;
 
 public class Orchestrator implements IOrchestrator {
 
+
+
     IAGVsubscriber agv;
-    IWHsubscriber wh = new WarehouseSubscriber();
+    IWHsubscriber wh;
 
     int battery = 100;
     String programName;
     int state;
 
     public Orchestrator() {
+        wh = new WarehouseSubscriber();
         agv = new AGVsubscriber();
-
-
     }
 
-    public void AgvSomething() {
-
-
-    }
 
     @Override
     public String getWarehuseState() {
@@ -36,6 +33,20 @@ public class Orchestrator implements IOrchestrator {
         return null;
     }
 
+    private void sequenceInitializer(){
+
+
+    }
+
+    // start sequence in gui
+    @Override
+    public void startSequence(){
+        sequenceInitializer();
+        //
+        //
+        //
+    }
+
     @Override
     public int getAGVstate() {
         if (agv.getMessage() != null) {
@@ -43,7 +54,6 @@ public class Orchestrator implements IOrchestrator {
 //            parsing JSON message from AGV to battery, state, program name variables
             JSONObject ob = new JSONObject(json);
             state = ob.getInt("state");
-
 
         }
         return state;
