@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Hazelcast;
 using Hazelcast.DistributedObjects;
+using Newtonsoft.Json;
 
 namespace Assembly
 {
@@ -39,9 +40,9 @@ namespace Assembly
             // Thread.Sleep(500);
             Console.WriteLine($"Got message " + args.Payload);
             // Thread.Sleep(1000);
-            // var msg = new MQTTMessage();
-            // msg.ProcessID = Convert.ToInt32(args.Payload);
-            // _request.PublishOnTopic("emulator/operation", JsonConvert.SerializeObject(msg));
+            var msg = new MQTTMessage();
+            msg.ProcessID = Convert.ToInt32(args.Payload);
+            _request.PublishOnTopic("emulator/operation", JsonConvert.SerializeObject(msg));
         }
         
 

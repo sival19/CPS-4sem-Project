@@ -22,7 +22,7 @@ namespace Assembly
         IMqttClientOptions options;
         string message;
         private static string _valueToMonitor = "";
-        private static Regex rx = new Regex("\"CurrentOperation\":.");
+        private static Regex rx = new Regex("\"State\":.");
 
         private Program _program = new Program();
 
@@ -69,9 +69,10 @@ namespace Assembly
             client.UseApplicationMessageReceivedHandler(async e =>
             {
                 message = ($"MQTT Subscribed message: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}");
+                
                 Match match = rx.Match(message);
-                var changedValue = match.Value;
-                // Console.WriteLine(message);
+                var changedValue = message;
+                Console.WriteLine(message);
 
                 if (!_valueToMonitor.Equals(changedValue))
                 {
