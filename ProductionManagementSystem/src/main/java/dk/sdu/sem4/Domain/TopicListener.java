@@ -12,7 +12,7 @@ public class TopicListener implements com.hazelcast.topic.MessageListener<String
 
         msg = message.getMessageObject();
 
-        System.out.println("message from publisher: " + message.getMessageObject());
+//        System.out.println("message from publisher: " + message.getMessageObject());
     }
 
     public String getMsg() {

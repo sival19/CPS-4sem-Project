@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 public class HelloController implements Initializable {
     IAGVsubscriber agv = new AGVsubscriber();
     IOrchestrator orchestrator = new Orchestrator();
+
     int battery;
     int state;
     String programName ="";
@@ -32,6 +33,10 @@ public class HelloController implements Initializable {
     private TextField agvProgramName;
     @FXML
     private TextField agvState;
+    @FXML
+    private TextField assemblyState;
+    @FXML
+    private TextField assemblyProgramName;
     // other details
     @FXML
     private Rectangle agvExecutingMarker;
@@ -40,8 +45,8 @@ public class HelloController implements Initializable {
     // production control buttons
     @FXML
     protected void onStartProductionClick(){
-        orchestrator.startSequence();
-        System.out.println("Production start button clicked");
+//        orchestrator.startSequence();
+//        System.out.println("Production start button clicked");
     }
 
     @FXML
@@ -68,7 +73,7 @@ public class HelloController implements Initializable {
     @FXML
     protected void onAssemblyButtonClick(){
 
-//        agv.SendMessage("PutAssemblyOperation");
+        agv.SendMessage("PutAssemblyOperation");
     }
 
 
@@ -76,6 +81,7 @@ public class HelloController implements Initializable {
     protected void onWarehouseButtonClick() {
 
         agv.SendMessage("MoveToStorageOperation");
+
 
     }
 
@@ -92,8 +98,11 @@ public class HelloController implements Initializable {
                     agvState.setText(String.valueOf(orchestrator.getAGVstate()));
                     batteryStatus.setText(String.valueOf(orchestrator.getAGVbattery()));
                     agvProgramName.setText(String.valueOf(orchestrator.getAGVProgram()));
+                    assemblyState.setText(String.valueOf(orchestrator.getAssemblyState()));
+                    assemblyProgramName.setText(String.valueOf(orchestrator.getAssemblyProgram()));
+                    orchestrator.startSequence();
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

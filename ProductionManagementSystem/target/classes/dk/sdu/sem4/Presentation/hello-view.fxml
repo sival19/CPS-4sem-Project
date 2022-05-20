@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="574.0" prefWidth="1066.0" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.sdu.sem4.Presentation.HelloController">
+<VBox alignment="CENTER" prefHeight="574.0" prefWidth="1066.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.sdu.sem4.Presentation.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -53,6 +53,8 @@
          <TextField fx:id="agvProgramName" layoutX="463.0" layoutY="330.0" prefHeight="26.0" prefWidth="177.0" style="-fx-background-color: transparent;" />
          <Rectangle fx:id="agvExecutingMarker" arcHeight="5.0" arcWidth="5.0" fill="#7fbcf5" height="15.0" layoutX="415.0" layoutY="75.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
          <Rectangle fx:id="agvChargingMarker" arcHeight="5.0" arcWidth="5.0" fill="#6ec68d" height="15.0" layoutX="415.0" layoutY="75.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
+         <TextField fx:id="assemblyState" layoutX="793.0" layoutY="70.0" prefHeight="26.0" prefWidth="148.0" style="-fx-background-color: transparent;" />
+         <TextField fx:id="assemblyProgramName" layoutX="825.0" layoutY="330.0" prefHeight="26.0" prefWidth="148.0" style="-fx-background-color: transparent;" />
       </children>
    </AnchorPane>
 </VBox>
