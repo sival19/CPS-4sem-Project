@@ -68,11 +68,11 @@ namespace Assembly
         {
             client.UseApplicationMessageReceivedHandler(async e =>
             {
-                message = ($"MQTT Subscribed message: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}");
+                message = ($"{Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}");
                 
                 Match match = rx.Match(message);
                 var changedValue = message;
-                Console.WriteLine(message);
+                // Console.WriteLine(message);
 
                 if (!_valueToMonitor.Equals(changedValue))
                 {

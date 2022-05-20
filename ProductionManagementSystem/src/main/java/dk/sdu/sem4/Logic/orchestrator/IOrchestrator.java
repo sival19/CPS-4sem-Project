@@ -3,7 +3,7 @@ package dk.sdu.sem4.Logic.orchestrator;
 public interface IOrchestrator {
 
     String getWarehuseState();
-    String getAssemblyStatus();
+    int getAssemblyState();
     int getAGVstate();
     int getAGVbattery();
     void startProductionSequence();
@@ -12,6 +12,7 @@ public interface IOrchestrator {
     void pauseProductionSequence();
     String getAGVProgram();
     void startSequence();
+    int getAssemblyProgram();
 
 
 }
