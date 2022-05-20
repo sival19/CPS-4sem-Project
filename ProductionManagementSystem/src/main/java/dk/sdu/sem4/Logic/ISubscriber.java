@@ -1,6 +1,6 @@
-package dk.sdu.sem4.Logic.WH;
+package dk.sdu.sem4.Logic;
 
-public interface IWHsubscriber {
+public interface ISubscriber {
 
     void SendMessage(String action);
     String getMessage();

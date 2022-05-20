@@ -1,8 +1,7 @@
 package dk.sdu.sem4.Logic.orchestrator;
 
 import dk.sdu.sem4.Logic.AGV.AGVsubscriber;
-import dk.sdu.sem4.Logic.AGV.IAGVsubscriber;
-import dk.sdu.sem4.Logic.WH.IWHsubscriber;
+import dk.sdu.sem4.Logic.ISubscriber;
 import dk.sdu.sem4.Logic.WH.WarehouseSubscriber;
 import org.json.JSONObject;
 
@@ -10,8 +9,8 @@ public class Orchestrator implements IOrchestrator {
 
 
 
-    IAGVsubscriber agv;
-    IWHsubscriber wh;
+    ISubscriber agv;
+    ISubscriber wh;
 
     int battery = 100;
     String programName;

@@ -1,8 +1,9 @@
 package dk.sdu.sem4.Logic.AGV;
 
 import dk.sdu.sem4.Domain.TopicHandler;
+import dk.sdu.sem4.Logic.ISubscriber;
 
-public class AGVsubscriber implements IAGVsubscriber {
+public class AGVsubscriber implements ISubscriber {
 
     private TopicHandler topicSubscriber;
     private String message;

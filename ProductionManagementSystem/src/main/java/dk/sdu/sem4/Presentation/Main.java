@@ -2,12 +2,13 @@ package dk.sdu.sem4.Presentation;
 
 
 import dk.sdu.sem4.Logic.AGV.AGVsubscriber;
-import dk.sdu.sem4.Logic.AGV.IAGVsubscriber;
+
 
 import dk.sdu.sem4.Logic.Assembly.AssemblySubscriber;
-import dk.sdu.sem4.Logic.Assembly.IAssemblySubscriber;
 
-import dk.sdu.sem4.Logic.WH.IWHsubscriber;
+
+import dk.sdu.sem4.Logic.ISubscriber;
+
 import dk.sdu.sem4.Logic.WH.WarehouseSubscriber;
 
 
@@ -18,10 +19,10 @@ public class Main {
     public static void main(String[] args) {
 
 
-        IWHsubscriber wh = new WarehouseSubscriber();
+        ISubscriber wh = new WarehouseSubscriber();
 
-        IAGVsubscriber agv = new AGVsubscriber();
-        IAssemblySubscriber assembly = new AssemblySubscriber();
+        ISubscriber agv = new AGVsubscriber();
+        ISubscriber assembly = new AssemblySubscriber();
 
         boolean running = true;
 

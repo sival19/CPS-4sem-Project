@@ -1,10 +1,10 @@
 package dk.sdu.sem4.Presentation;
+import dk.sdu.sem4.Logic.ISubscriber;
 import dk.sdu.sem4.Logic.orchestrator.IOrchestrator;
 import dk.sdu.sem4.Logic.orchestrator.Orchestrator;
 import javafx.scene.shape.Rectangle;
 
 import dk.sdu.sem4.Logic.AGV.AGVsubscriber;
-import dk.sdu.sem4.Logic.AGV.IAGVsubscriber;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 
 public class HelloController implements Initializable {
-    IAGVsubscriber agv = new AGVsubscriber();
+    ISubscriber agv = new AGVsubscriber();
     IOrchestrator orchestrator = new Orchestrator();
     int battery;
     int state;
