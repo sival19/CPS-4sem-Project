@@ -2,12 +2,13 @@ package dk.sdu.sem4.Presentation;
 
 
 import dk.sdu.sem4.Logic.AGV.AGVsubscriber;
-import dk.sdu.sem4.Logic.AGV.IAGVsubscriber;
+
 
 import dk.sdu.sem4.Logic.Assembly.AssemblySubscriber;
-import dk.sdu.sem4.Logic.Assembly.IAssemblySubscriber;
 
-import dk.sdu.sem4.Logic.WH.IWHsubscriber;
+
+import dk.sdu.sem4.Logic.ISubscriber;
+
 import dk.sdu.sem4.Logic.WH.WarehouseSubscriber;
 
 
@@ -18,10 +19,10 @@ public class Main {
     public static void main(String[] args) {
 
 
-        IWHsubscriber wh = new WarehouseSubscriber();
+        ISubscriber wh = new WarehouseSubscriber();
 
-        IAGVsubscriber agv = new AGVsubscriber();
-        IAssemblySubscriber assembly = new AssemblySubscriber();
+        ISubscriber agv = new AGVsubscriber();
+        ISubscriber assembly = new AssemblySubscriber();
 
         boolean running = true;
 
@@ -44,7 +45,6 @@ public class Main {
 
                 "Press 8 to send operation to Assembly line\n" +
                 "Press 9 to shut this down\n" +
-
                 "Press 10 to shut this down\n" +
 
                 "Write help to see the available commands";
@@ -55,12 +55,16 @@ public class Main {
             while (running) {
                 switch (s.nextLine()) {
                     case "1":
-                        agv.SendMessage("MoveToChargerOperation");
+                        wh.SendMessage("GetInventoryWarehouseOperation");
+                        System.out.println(wh.getMessage());
                         break;
                     case "2":
-                        agv.SendMessage("MoveToAssemblyOperation");
+                        wh.SendMessage("PickItemWarehouseOperation,5");
                         break;
                     case "3":
+
+                        wh.SendMessage("InsertItemWarehouseOperation,5,This is the new item");
+
                         agv.SendMessage("MoveToStorageOperation");
                         break;
                     case "4":
@@ -88,6 +92,7 @@ public class Main {
                       
                         System.out.printf("Sending message to Warehouse...\n");
                         wh.SendMessage("PickItem 2");
+
                         break;
                     case "10":
                         System.out.println("Dont leave me hanging :(");

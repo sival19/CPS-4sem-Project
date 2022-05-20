@@ -1,7 +1,8 @@
 package dk.sdu.sem4.Logic.WH;
 import dk.sdu.sem4.Domain.TopicHandler;
+import dk.sdu.sem4.Logic.ISubscriber;
 
-public class WarehouseSubscriber implements IWHsubscriber {
+public class WarehouseSubscriber implements ISubscriber {
 
     private TopicHandler topicSubscriber;
     private String message;

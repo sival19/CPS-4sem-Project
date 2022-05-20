@@ -1,8 +1,9 @@
 package dk.sdu.sem4.Logic.Assembly;
 
 import dk.sdu.sem4.Domain.TopicHandler;
+import dk.sdu.sem4.Logic.ISubscriber;
 
-public class AssemblySubscriber implements IAssemblySubscriber {
+public class AssemblySubscriber implements ISubscriber {
 
     private TopicHandler topicSubscriber;
     private String message;
