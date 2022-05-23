@@ -26,7 +26,3 @@ services:
     image: hazelcast/hazelcast:latest
     ports:
       - 5701:5701
-    networks:
-      - myNetwork
-    expose:
-      - "5703"

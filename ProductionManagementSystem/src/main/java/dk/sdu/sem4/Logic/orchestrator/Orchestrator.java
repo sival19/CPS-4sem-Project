@@ -1,24 +1,31 @@
 package dk.sdu.sem4.Logic.orchestrator;
 
 import dk.sdu.sem4.Logic.AGV.AGVsubscriber;
+import dk.sdu.sem4.Logic.Assembly.AssemblySubscriber;
 import dk.sdu.sem4.Logic.ISubscriber;
 import dk.sdu.sem4.Logic.WH.WarehouseSubscriber;
 import org.json.JSONObject;
 
 public class Orchestrator implements IOrchestrator {
 
-
-
     ISubscriber agv;
     ISubscriber wh;
 
+    ISubscriber assembly;
+
     int battery = 100;
-    String programName;
-    int state;
+    String agvProgramName;
+    int agvState;
+
+    int assemblyState;
+    int assemblyProgramName;
+
+    int warehouseState;
 
     public Orchestrator() {
         wh = new WarehouseSubscriber();
         agv = new AGVsubscriber();
+        assembly = new AssemblySubscriber();
     }
 
 
@@ -34,7 +41,6 @@ public class Orchestrator implements IOrchestrator {
 
     private void sequenceInitializer(){
 
-
     }
 
     // start sequence in gui
@@ -47,15 +53,25 @@ public class Orchestrator implements IOrchestrator {
     }
 
     @Override
-    public int getAGVstate() {
+    public int getAgvState() {
         if (agv.getMessage() != null) {
             String json = agv.getMessage();
 //            parsing JSON message from AGV to battery, state, program name variables
             JSONObject ob = new JSONObject(json);
-            state = ob.getInt("state");
-
+            agvState = ob.getInt("state");
         }
-        return state;
+        return agvState;
+    }
+
+    @Override
+    public int getWarehouseState() {
+        if (wh.getMessage() != null) {
+            String json = wh.getMessage();
+//          parsing JSON message from Warehouse
+            JSONObject ob = new JSONObject(json);
+             warehouseState= ob.getInt("State");
+        }
+        return warehouseState;
     }
 
     @Override
@@ -65,12 +81,33 @@ public class Orchestrator implements IOrchestrator {
 //            parsing JSON message from AGV to battery, state, program name variables
             JSONObject ob = new JSONObject(json);
             battery = ob.getInt("battery");
-
-//            System.out.println(json);
         }
 
         return battery;
     }
+
+    @Override
+    public int getAssemblyState() {
+        if (assembly.getMessage() != null) {
+            String json = assembly.getMessage();
+//            parsing JSON message from AGV to battery, state, program name variables
+            JSONObject ob = new JSONObject(json);
+            assemblyState = ob.getInt("State");
+        }
+        return assemblyState;
+    }
+
+    @Override
+    public int getAssemblyProgram() {
+        if (assembly.getMessage() != null) {
+            String json = assembly.getMessage();
+//            parsing JSON message from AGV to battery, state, program name variables
+            JSONObject ob = new JSONObject(json);
+            assemblyProgramName= ob.getInt("CurrentOperation");
+        }
+        return assemblyProgramName;
+    }
+
 
     @Override
     public void startProductionSequence() {
@@ -98,8 +135,8 @@ public class Orchestrator implements IOrchestrator {
             String json = agv.getMessage();
 //            parsing JSON message from AGV to battery, state, program name variables
             JSONObject ob = new JSONObject(json);
-            programName = ob.getString("program name");
+            agvProgramName = ob.getString("program name");
         }
-        return programName;
+        return agvProgramName;
     }
 }
