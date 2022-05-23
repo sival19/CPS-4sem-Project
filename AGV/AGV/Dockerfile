@@ -1,12 +1,12 @@
-FROM mcr.microsoft.com/dotnet/runtime:3.1-focal AS base
+﻿FROM mcr.microsoft.com/dotnet/core/runtime:3.1 AS base
 WORKDIR /app
 
-FROM mcr.microsoft.com/dotnet/sdk:3.1-focal AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
-COPY ["AGV.csproj", "./"]
-RUN dotnet restore
+COPY ["AGV/AGV.csproj", "AGV/"]
+RUN dotnet restore "AGV/AGV.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/AGV"
 RUN dotnet build "AGV.csproj" -c Release -o /app/build
 
 FROM build AS publish

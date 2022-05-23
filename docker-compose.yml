@@ -1,4 +1,7 @@
 version: '3.8'
+networks:
+  semesterproject:
+    driver: bridge
 
 services:
   mqtt: 
@@ -26,7 +29,12 @@ services:
     image: hazelcast/hazelcast:latest
     ports:
       - 5701:5701
-    networks:
-      - myNetwork
-    expose:
-      - "5703"
+    container_name: 'hazelcast'
+    network_mode: "host"
+  agv:
+    image: agv
+    container_name: 'st4agv'
+    network_mode: "host"
+  ubuntu:
+    image: ubuntu:latest
+    tty: true
