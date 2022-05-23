@@ -29,10 +29,11 @@ public class Orchestrator implements IOrchestrator {
     int programNameAssembly;
     int state;
     int stateAssembly;
+
     boolean hasItem = false;
-    String AGVLastOperation;
     boolean put = false;
-    boolean sendAssembly = true;
+    boolean sendAssembly = false;
+    boolean sendWarehouse = true;
 
 
     public Orchestrator() {
@@ -61,18 +62,24 @@ public class Orchestrator implements IOrchestrator {
     @Override
     public void startSequence(){
 //        sequenceInitializer();
+//        System.out.println(getAGVstate());
+//        System.out.println(getAssemblyState());
         //
         //
         //
         if (hasItem && getAssemblyState() == 0){
-            assembly.SendMessage("2222");
+            assembly.SendMessage("1234");
+            hasItem = false;
         }
 
-        if (getAGVstate()==1 && put){
+        if (getAssemblyProgram() == 1234 && getAssemblyState() == 0){
+            assembly.SendMessage("1111");
+        }
+
+        if (getAgvState()==1 && put){
             agv.SendMessage("PutAssemblyOperation");
             hasItem = true;
             put = false;
-            AGVLastOperation = "PutAssemblyOperation";
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -80,7 +87,7 @@ public class Orchestrator implements IOrchestrator {
             }
         }
 
-        if (getAssemblyState() == 0 && getAGVstate() == 1 && sendAssembly){
+        if (getAssemblyState() == 0 && getAgvState() == 1 && sendAssembly){
             agv.SendMessage("MoveToAssemblyOperation");
             put = true;
             sendAssembly = false;
@@ -90,6 +97,7 @@ public class Orchestrator implements IOrchestrator {
                 e.printStackTrace();
             }
         }
+
 
 
 //        agv.SendMessage("PutAssemblyOperation");
@@ -119,10 +127,10 @@ public class Orchestrator implements IOrchestrator {
         return warehouseState;
     }
 
-    @Override
-    public int getAGVstate() {
-        return 0;
-    }
+//    @Override
+//    public int getAGVstate() {
+//        return 0;
+//    }
 
     @Override
     public int getAGVbattery() {

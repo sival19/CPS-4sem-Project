@@ -57,6 +57,7 @@ public class HelloController implements Initializable {
     protected void onStartProductionClick(){
         orchestrator.startSequence();
 //        System.out.println("Production start button clicked");
+        System.out.println("Start button clicked");
     }
 
     @FXML
@@ -128,23 +129,23 @@ public class HelloController implements Initializable {
             }
         }).start();
     }
-    public void parseAssemblyState(int stateAS){
-        switch(stateAS){
-            case 0: assemblyState.setText("Idle");
-            case 1: assemblyState.setText("Executing");
-            case 2: assemblyState.setText("Error");
-            default: assemblyState.setText("Default");
-        }
-    }
-    public void parseAGVState(int stAGV){
-        switch(stAGV){
-            case 0: agvState.setText("Default");
-            case 1: agvState.setText("Idle");
-            case 2: assemblyState.setText("Executing");
-            case 3: assemblyState.setText("Charging");
-            default: assemblyState.setText("Default");
-        }
-    }
+//    public void parseAssemblyState(int stateAS){
+//        switch(stateAS){
+//            case 0: assemblyState.setText("Idle");
+//            case 1: assemblyState.setText("Executing");
+//            case 2: assemblyState.setText("Error");
+//            default: assemblyState.setText("Default");
+//        }
+//    }
+//    public void parseAGVState(int stAGV){
+//        switch(stAGV){
+//            case 0: agvState.setText("Default");
+//            case 1: agvState.setText("Idle");
+//            case 2: assemblyState.setText("Executing");
+//            case 3: assemblyState.setText("Charging");
+//            default: assemblyState.setText("Default");
+//        }
+//    }
 }
 
 

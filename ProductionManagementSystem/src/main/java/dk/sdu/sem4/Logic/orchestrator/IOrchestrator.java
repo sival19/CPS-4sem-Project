@@ -7,7 +7,7 @@ public interface IOrchestrator {
     String getAssemblyStatus();
     int getAgvState();
     int getWarehouseState();
-    int getAGVstate();
+//    int getAGVstate();
     int getAGVbattery();
     int getAssemblyState();
     int getAssemblyProgram();
