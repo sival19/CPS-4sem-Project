@@ -23,11 +23,11 @@
             </image>
          </ImageView>
           <Button layoutX="347.0" layoutY="545.0" onAction="#onWarehouseButtonClick" text="Send to WH" />
-          <Button layoutX="463.0" layoutY="545.0" onAction="#onAssemblyButtonClick" text="Send To AST" />
+          <Button layoutX="578.0" layoutY="543.0" onAction="#onAssemblyButtonClick" text="Send To AST" />
       
           <Label fx:id="welcomeText" />
          <TextField fx:id="agvStatus" layoutX="914.0" layoutY="6.0" opacity="0.0" prefHeight="31.0" prefWidth="98.0" />
-          <Button layoutX="584.0" layoutY="545.0" onAction="#onChargeButtonClick" prefHeight="31.0" prefWidth="111.0" text="Send To CH" />
+          <Button layoutX="448.0" layoutY="540.0" onAction="#onChargeButtonClick" prefHeight="31.0" prefWidth="111.0" text="Send To CH" />
          <Button layoutX="82.0" layoutY="464.0" mnemonicParsing="false" onAction="#onStartProductionClick" prefHeight="47.0" prefWidth="190.0" style="-fx-background-color: transparent;" text="start" textFill="WHITE">
             <font>
                <Font name="System Bold" size="18.0" />
@@ -53,8 +53,13 @@
          <TextField fx:id="agvProgramName" layoutX="463.0" layoutY="330.0" prefHeight="26.0" prefWidth="177.0" style="-fx-background-color: transparent;" />
          <Rectangle fx:id="agvExecutingMarker" arcHeight="5.0" arcWidth="5.0" fill="#7fbcf5" height="15.0" layoutX="415.0" layoutY="75.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
          <Rectangle fx:id="agvChargingMarker" arcHeight="5.0" arcWidth="5.0" fill="#6ec68d" height="15.0" layoutX="415.0" layoutY="75.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
-         <TextField fx:id="assemblyState" layoutX="793.0" layoutY="70.0" prefHeight="26.0" prefWidth="148.0" style="-fx-background-color: transparent;" />
-         <TextField fx:id="assemblyProgramName" layoutX="825.0" layoutY="330.0" prefHeight="26.0" prefWidth="148.0" style="-fx-background-color: transparent;" />
+         <TextField fx:id="assemblyState" layoutX="787.0" layoutY="63.0" prefHeight="31.0" prefWidth="164.0" />
+         <TextField fx:id="assemblyProgramName" layoutX="814.0" layoutY="325.0" prefHeight="37.0" prefWidth="183.0" style="-fx-background-color: transparent;" />
+         <Button layoutX="853.0" layoutY="542.0" mnemonicParsing="false" onAction="#onAssembleClick" prefHeight="31.0" prefWidth="70.0" text="Assemble" />
+         <Button layoutX="688.0" layoutY="543.0" mnemonicParsing="false" onAction="#onAGVputAssemblyClick" text="AGV put Assembly" />
+         <TextField fx:id="whState" layoutX="91.0" layoutY="66.0" prefHeight="26.0" prefWidth="164.0" />
+         <TextField fx:id="whProgramName" layoutX="113.0" layoutY="331.0" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: transparent;" />
+
       </children>
    </AnchorPane>
 </VBox>

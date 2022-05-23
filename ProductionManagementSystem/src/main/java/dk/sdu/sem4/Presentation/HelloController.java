@@ -1,5 +1,7 @@
 package dk.sdu.sem4.Presentation;
+import dk.sdu.sem4.Logic.Assembly.AssemblySubscriber;
 import dk.sdu.sem4.Logic.ISubscriber;
+import dk.sdu.sem4.Logic.WH.WarehouseSubscriber;
 import dk.sdu.sem4.Logic.orchestrator.IOrchestrator;
 import dk.sdu.sem4.Logic.orchestrator.Orchestrator;
 import javafx.scene.shape.Rectangle;
@@ -16,6 +18,9 @@ import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
     ISubscriber agv = new AGVsubscriber();
+    ISubscriber assembly= new AssemblySubscriber();
+
+    ISubscriber wh = new WarehouseSubscriber();
     IOrchestrator orchestrator = new Orchestrator();
 
     int battery;
@@ -39,20 +44,23 @@ public class HelloController implements Initializable {
     private TextField assemblyProgramName;
     // other details
     @FXML
+    private TextField whProgramName;
+
+    @FXML
+    private TextField whState;
+    @FXML
     private Rectangle agvExecutingMarker;
     @FXML
     private Rectangle agvChargingMarker;
     // production control buttons
     @FXML
     protected void onStartProductionClick(){
-//        orchestrator.startSequence();
+        orchestrator.startSequence();
 //        System.out.println("Production start button clicked");
     }
 
     @FXML
-    protected void onStopProductionClick(){
-        System.out.println("Production stop button clicked");
-    }
+    protected void onStopProductionClick(){ System.out.println("Production stop button clicked");}
 
     @FXML
     protected void onPauseProductionClick(){
@@ -72,6 +80,10 @@ public class HelloController implements Initializable {
 
     @FXML
     protected void onAssemblyButtonClick(){
+        agv.SendMessage("MoveToAssemblyOperation");
+    }
+    @FXML
+    void onAGVputAssemblyClick() {
 
         agv.SendMessage("PutAssemblyOperation");
     }
@@ -84,6 +96,11 @@ public class HelloController implements Initializable {
 
 
     }
+    @FXML
+    void onAssembleClick() {
+        System.out.println("Assembly task sent");
+        assembly.SendMessage("1234");
+    }
 
 
     @Override
@@ -93,14 +110,14 @@ public class HelloController implements Initializable {
             public void run() {
                 while (true){
 
-//                    System.out.println(orchestrator.getAGVbattery());
-
-                    agvState.setText(String.valueOf(orchestrator.getAGVstate()));
+//                  System.out.println(orchestrator.getAGVbattery());
+                    assemblyProgramName.setText(String.valueOf(orchestrator.getAssemblyProgram()));
+                    agvState.setText(String.valueOf(orchestrator.getAgvState()));
+                    assemblyState.setText(String.valueOf(orchestrator.getAssemblyState()));
                     batteryStatus.setText(String.valueOf(orchestrator.getAGVbattery()));
                     agvProgramName.setText(String.valueOf(orchestrator.getAGVProgram()));
-                    assemblyState.setText(String.valueOf(orchestrator.getAssemblyState()));
-                    assemblyProgramName.setText(String.valueOf(orchestrator.getAssemblyProgram()));
                     orchestrator.startSequence();
+
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -111,5 +128,23 @@ public class HelloController implements Initializable {
             }
         }).start();
     }
-
+    public void parseAssemblyState(int stateAS){
+        switch(stateAS){
+            case 0: assemblyState.setText("Idle");
+            case 1: assemblyState.setText("Executing");
+            case 2: assemblyState.setText("Error");
+            default: assemblyState.setText("Default");
+        }
+    }
+    public void parseAGVState(int stAGV){
+        switch(stAGV){
+            case 0: agvState.setText("Default");
+            case 1: agvState.setText("Idle");
+            case 2: assemblyState.setText("Executing");
+            case 3: assemblyState.setText("Charging");
+            default: assemblyState.setText("Default");
+        }
+    }
 }
+
+
