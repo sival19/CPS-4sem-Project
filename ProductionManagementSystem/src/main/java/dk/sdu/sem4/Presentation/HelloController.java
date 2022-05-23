@@ -22,6 +22,7 @@ public class HelloController implements Initializable {
 
     ISubscriber wh = new WarehouseSubscriber();
     IOrchestrator orchestrator = new Orchestrator();
+
     int battery;
     int state;
     String programName ="";
@@ -37,11 +38,11 @@ public class HelloController implements Initializable {
     private TextField agvProgramName;
     @FXML
     private TextField agvState;
-    // other details
-    @FXML
-    private TextField assemblyProgramName;
     @FXML
     private TextField assemblyState;
+    @FXML
+    private TextField assemblyProgramName;
+    // other details
     @FXML
     private TextField whProgramName;
 
@@ -55,7 +56,7 @@ public class HelloController implements Initializable {
     @FXML
     protected void onStartProductionClick(){
         orchestrator.startSequence();
-        System.out.println("Production start button clicked");
+//        System.out.println("Production start button clicked");
     }
 
     @FXML
@@ -83,6 +84,7 @@ public class HelloController implements Initializable {
     }
     @FXML
     void onAGVputAssemblyClick() {
+
         agv.SendMessage("PutAssemblyOperation");
     }
 
@@ -91,6 +93,7 @@ public class HelloController implements Initializable {
     protected void onWarehouseButtonClick() {
 
         agv.SendMessage("MoveToStorageOperation");
+
 
     }
     @FXML
@@ -113,9 +116,10 @@ public class HelloController implements Initializable {
                     assemblyState.setText(String.valueOf(orchestrator.getAssemblyState()));
                     batteryStatus.setText(String.valueOf(orchestrator.getAGVbattery()));
                     agvProgramName.setText(String.valueOf(orchestrator.getAGVProgram()));
-                    //whState.setText(String.valueOf(orchestrator.getWarehuseState()));
+                    orchestrator.startSequence();
+
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

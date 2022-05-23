@@ -59,6 +59,7 @@
          <Button layoutX="688.0" layoutY="543.0" mnemonicParsing="false" onAction="#onAGVputAssemblyClick" text="AGV put Assembly" />
          <TextField fx:id="whState" layoutX="91.0" layoutY="66.0" prefHeight="26.0" prefWidth="164.0" />
          <TextField fx:id="whProgramName" layoutX="113.0" layoutY="331.0" prefHeight="31.0" prefWidth="190.0" style="-fx-background-color: transparent;" />
+
       </children>
    </AnchorPane>
 </VBox>

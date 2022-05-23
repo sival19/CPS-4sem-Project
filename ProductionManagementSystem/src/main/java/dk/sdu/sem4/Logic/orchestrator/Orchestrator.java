@@ -2,15 +2,17 @@ package dk.sdu.sem4.Logic.orchestrator;
 
 import dk.sdu.sem4.Logic.AGV.AGVsubscriber;
 import dk.sdu.sem4.Logic.Assembly.AssemblySubscriber;
+
 import dk.sdu.sem4.Logic.ISubscriber;
+
 import dk.sdu.sem4.Logic.WH.WarehouseSubscriber;
 import org.json.JSONObject;
 
 public class Orchestrator implements IOrchestrator {
 
+
     ISubscriber agv;
     ISubscriber wh;
-
     ISubscriber assembly;
 
     int battery = 100;
@@ -21,6 +23,17 @@ public class Orchestrator implements IOrchestrator {
     int assemblyProgramName;
 
     int warehouseState;
+
+
+    String programNameAGV;
+    int programNameAssembly;
+    int state;
+    int stateAssembly;
+    boolean hasItem = false;
+    String AGVLastOperation;
+    boolean put = false;
+    boolean sendAssembly = true;
+
 
     public Orchestrator() {
         wh = new WarehouseSubscriber();
@@ -39,6 +52,7 @@ public class Orchestrator implements IOrchestrator {
         return null;
     }
 
+
     private void sequenceInitializer(){
 
     }
@@ -46,11 +60,42 @@ public class Orchestrator implements IOrchestrator {
     // start sequence in gui
     @Override
     public void startSequence(){
-        sequenceInitializer();
+//        sequenceInitializer();
         //
         //
         //
+        if (hasItem && getAssemblyState() == 0){
+            assembly.SendMessage("2222");
+        }
+
+        if (getAGVstate()==1 && put){
+            agv.SendMessage("PutAssemblyOperation");
+            hasItem = true;
+            put = false;
+            AGVLastOperation = "PutAssemblyOperation";
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (getAssemblyState() == 0 && getAGVstate() == 1 && sendAssembly){
+            agv.SendMessage("MoveToAssemblyOperation");
+            put = true;
+            sendAssembly = false;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+//        agv.SendMessage("PutAssemblyOperation");
+//        assembly.SendMessage("2222");
     }
+
 
     @Override
     public int getAgvState() {
@@ -72,6 +117,11 @@ public class Orchestrator implements IOrchestrator {
              warehouseState= ob.getInt("State");
         }
         return warehouseState;
+    }
+
+    @Override
+    public int getAGVstate() {
+        return 0;
     }
 
     @Override
@@ -135,8 +185,9 @@ public class Orchestrator implements IOrchestrator {
             String json = agv.getMessage();
 //            parsing JSON message from AGV to battery, state, program name variables
             JSONObject ob = new JSONObject(json);
-            agvProgramName = ob.getString("program name");
+            programNameAGV = ob.getString("program name");
         }
-        return agvProgramName;
+        return programNameAGV;
     }
+
 }
