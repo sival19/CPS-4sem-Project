@@ -55,7 +55,7 @@ public class HelloController implements Initializable {
     // production control buttons
     @FXML
     protected void onStartProductionClick(){
-        orchestrator.startSequence();
+//        orchestrator.startSequence();
 //        System.out.println("Production start button clicked");
         System.out.println("Start button clicked");
     }
@@ -117,7 +117,11 @@ public class HelloController implements Initializable {
                     assemblyState.setText(String.valueOf(orchestrator.getAssemblyState()));
                     batteryStatus.setText(String.valueOf(orchestrator.getAGVbattery()));
                     agvProgramName.setText(String.valueOf(orchestrator.getAGVProgram()));
-                    orchestrator.startSequence();
+                    try {
+                        orchestrator.startSequence();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
                     try {
                         Thread.sleep(1000);

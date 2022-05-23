@@ -2,8 +2,6 @@ package dk.sdu.sem4.Logic.orchestrator;
 
 public interface IOrchestrator {
 
-    String getWarehuseState();
-
     String getAssemblyStatus();
     int getAgvState();
     int getWarehouseState();
@@ -16,7 +14,7 @@ public interface IOrchestrator {
     void abortProductionSequence();
     void pauseProductionSequence();
     String getAGVProgram();
-    void startSequence();
+    void startSequence() throws InterruptedException;
 
 
 }
