@@ -110,9 +110,10 @@ namespace Warehouse
                 //{
                     //_valueToMonitor = changedValue;
                     await PublishTopic("WarehouseToJava", await soap.getInventory());
-                //}
+                    await Task.Delay(500);
+                    //}
 
-                
+
             }
             //await soap.getInventory();
 

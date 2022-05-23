@@ -32,6 +32,8 @@ public class Orchestrator implements IOrchestrator {
     boolean WHReady = true;
     boolean AGVHasItem = false;
     boolean itemAssembled = false;
+    boolean WHPut = false;
+    boolean WHPick = true;
 
     int whItem = 1;
     int oldWHItem;
@@ -67,13 +69,12 @@ public class Orchestrator implements IOrchestrator {
         });
 
 
-        if (!WHHasItem && getWarehouseState() == 0 && WHReady) {
+        if (state == 1 && !WHHasItem && getWarehouseState() == 0 && WHReady && WHPick) {
             wh.SendMessage("PickItemWarehouseOperation," + whItem);
             oldWHItem = whItem;
             whItem += 1;
             WHHasItem = true;
             WHReady = false;
-
         }
 
 
@@ -91,6 +92,8 @@ public class Orchestrator implements IOrchestrator {
             WHHasItem = false;
             sendAssembly = true;
             AGVHasItem = true;
+            WHPick = false;
+            WHPut = true;
             state = 0;
         }
 
@@ -123,9 +126,33 @@ public class Orchestrator implements IOrchestrator {
             assmblyHasItem = false;
             itemAssembled = false;
             AGVHasItem = true;
+            sendWarehouse = true;
             state = 0;
         }
+
+        if (state == 1 && sendWarehouse && AGVHasItem){
+            agv.SendMessage("MoveToStorageOperation");
+            sendWarehouse = false;
+            AGVatWH = true;
+            AGVatAssembly = false;
+            state = 0;
+        }
+
+        if (state == 1 && AGVHasItem && !WHHasItem && WHPut && AGVatWH){
+            agv.SendMessage("PutWarehouseOperation");
+            AGVHasItem = false;
+            WHHasItem = true;
+        }
+
+        if (state == 1 && getWarehouseState() == 0 && WHPut && AGVatWH && !WHReady){
+            wh.SendMessage("InsertItemWarehouseOperation," + oldWHItem + ",This is item" + oldWHItem);
+            WHPut = false;
+            WHPick = true;
+            WHReady = true;
+        }
+
         Thread.sleep(100);
+
 
     }
 
