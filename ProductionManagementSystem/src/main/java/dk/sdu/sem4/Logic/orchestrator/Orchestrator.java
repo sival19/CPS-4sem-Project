@@ -16,18 +16,12 @@ public class Orchestrator implements IOrchestrator {
     ISubscriber assembly;
 
     int battery = 100;
-    String agvProgramName;
 
     int agvState;
     int assemblyState;
     int assemblyProgramName;
     int warehouseState;
-
-
     String programNameAGV;
-//    int programNameAssembly;
-//    int state;
-//    int stateAssembly;
 
     boolean assmblyHasItem = false;
     boolean WHHasItem = false;
@@ -39,11 +33,9 @@ public class Orchestrator implements IOrchestrator {
     boolean AGVHasItem = false;
     boolean itemAssembled = false;
 
-    int AGVstate;
-    int AGVchangedState = 0;
-
     int whItem = 1;
     int oldWHItem;
+    static int state;
 
 
     public Orchestrator() {
@@ -58,106 +50,83 @@ public class Orchestrator implements IOrchestrator {
     }
 
 
-    private void sequenceInitializer(){
+    private void sequenceInitializer() {
 
     }
 
     // start sequence in gui
     @Override
     public void startSequence() throws InterruptedException {
-//        sequenceInitializer();
-//        System.out.println(getAGVstate());
-//        System.out.println(getAssemblyState());
-        //
-        //
-        //
-        if (!WHHasItem && getWarehouseState() == 0 && WHReady){
+        int oldState = getAgvState();
+        state = 0;
+        if (oldState != state){
+            state = oldState;
+        }
+
+        Thread t9 = new Thread(() -> {
+        });
+
+
+        if (!WHHasItem && getWarehouseState() == 0 && WHReady) {
             wh.SendMessage("PickItemWarehouseOperation," + whItem);
             oldWHItem = whItem;
             whItem += 1;
             WHHasItem = true;
             WHReady = false;
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
 
-        if (getAgvState() == 0 && sendWarehouse){
+
+        if (state == 1 && sendWarehouse) {
             agv.SendMessage("MoveToStorageOperation");
             AGVatWH = true;
             sendWarehouse = false;
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            state = 0;
         }
 
-        if (getAgvState() == 0 && WHHasItem && AGVatWH && stateChangeAGV()){
+
+        if (state == 1 && WHHasItem && AGVatWH) {
+
             agv.SendMessage("PickWarehouseOperation");
             WHHasItem = false;
             sendAssembly = true;
             AGVHasItem = true;
-            Thread.sleep(1000);
+            state = 0;
         }
 
-        if (getAssemblyState() == 0 && getAgvState() == 1 && sendAssembly){
+        if (getAssemblyState() == 0 && state == 1 && sendAssembly) {
             agv.SendMessage("MoveToAssemblyOperation");
             AGVatAssembly = true;
             sendAssembly = false;
             AGVatWH = false;
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            state = 0;
         }
 
-        if (getAgvState()==1 && AGVatAssembly && AGVHasItem){
+
+        if (state == 1 && AGVatAssembly && AGVHasItem) {
             agv.SendMessage("PutAssemblyOperation");
             assmblyHasItem = true;
             AGVHasItem = false;
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            state = 0;
         }
 
-        if (assmblyHasItem && !itemAssembled && getAssemblyState() == 0){
+
+        if (assmblyHasItem && !itemAssembled && getAssemblyState() == 0) {
             assembly.SendMessage("1234");
             itemAssembled = true;
-
-            Thread.sleep(1000);
+            state = 0;
         }
 
-        if (assmblyHasItem && itemAssembled && getAssemblyState() == 0 && getAgvState() == 1){
+
+        if (assmblyHasItem && itemAssembled && getAssemblyState() == 0 && state == 1) {
             agv.SendMessage("PickAssemblyOperation");
             assmblyHasItem = false;
             itemAssembled = false;
             AGVHasItem = true;
-
-            Thread.sleep(1000);
+            state = 0;
         }
+        Thread.sleep(100);
 
-//        if (getAssemblyProgram() == 1234 && getAssemblyState() == 0){
-//            assembly.SendMessage("1111");
-//        }
-
-//        agv.SendMessage("PutAssemblyOperation");
-//        assembly.SendMessage("2222");
-    }
-
-    public boolean stateChangeAGV(){
-        boolean flag = false;
-        if (AGVstate != AGVchangedState){
-            AGVchangedState = AGVstate;
-            flag = true;
-        }
-        return flag;
     }
 
     @Override
@@ -177,7 +146,7 @@ public class Orchestrator implements IOrchestrator {
             String json = wh.getMessage();
 //          parsing JSON message from Warehouse
             JSONObject ob = new JSONObject(json);
-             warehouseState= ob.getInt("State");
+            warehouseState = ob.getInt("State");
         }
         return warehouseState;
     }
@@ -216,7 +185,7 @@ public class Orchestrator implements IOrchestrator {
             String json = assembly.getMessage();
 //            parsing JSON message from AGV to battery, state, program name variables
             JSONObject ob = new JSONObject(json);
-            assemblyProgramName= ob.getInt("CurrentOperation");
+            assemblyProgramName = ob.getInt("CurrentOperation");
         }
         return assemblyProgramName;
     }
