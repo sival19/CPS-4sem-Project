@@ -73,6 +73,9 @@ public class Orchestrator implements IOrchestrator {
             wh.SendMessage("PickItemWarehouseOperation," + whItem);
             oldWHItem = whItem;
             whItem += 1;
+            if(whItem == 11){
+                whItem = 0;
+            }
             WHHasItem = true;
             WHReady = false;
         }
