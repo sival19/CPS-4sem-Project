@@ -23,6 +23,20 @@ public class Orchestrator implements IOrchestrator {
     private int warehouseState;
     private String programNameAGV;
 
+    boolean assmblyHasItem = false;
+    boolean WHHasItem = false;
+    boolean AGVatAssembly = false;
+    boolean sendAssembly = false;
+    boolean sendWarehouse = true;
+    boolean AGVatWH = false;
+    boolean WHReady = true;
+    boolean AGVHasItem = false;
+    boolean itemAssembled = false;
+    boolean WHPut = false;
+    boolean WHPick = true;
+    boolean needCharge = false;
+    boolean startSystem = true;
+
 
     private int whItem = 1;
     private int oldWHItem;
@@ -43,19 +57,7 @@ public class Orchestrator implements IOrchestrator {
     // start sequence in gui
     @Override
     public void startSequence() throws InterruptedException {
-        boolean assmblyHasItem = false;
-        boolean WHHasItem = false;
-        boolean AGVatAssembly = false;
-        boolean sendAssembly = false;
-        boolean sendWarehouse = true;
-        boolean AGVatWH = false;
-        boolean WHReady = true;
-        boolean AGVHasItem = false;
-        boolean itemAssembled = false;
-        boolean WHPut = false;
-        boolean WHPick = true;
-        boolean needCharge = false;
-        boolean startSystem = true;
+
 
         int oldState = getAgvState();
         state = 0;
@@ -63,8 +65,6 @@ public class Orchestrator implements IOrchestrator {
             state = oldState;
         }
 
-        Thread t9 = new Thread(() -> {
-        });
 
         if (startSystem){
             agv.SendMessage("MoveToChargerOperation");
@@ -193,10 +193,6 @@ public class Orchestrator implements IOrchestrator {
         return warehouseState;
     }
 
-//    @Override
-//    public int getAGVstate() {
-//        return 0;
-//    }
 
     @Override
     public int getAGVbattery() {
