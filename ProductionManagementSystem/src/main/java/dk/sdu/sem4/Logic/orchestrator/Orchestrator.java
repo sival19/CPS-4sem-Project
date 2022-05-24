@@ -1,11 +1,11 @@
 package dk.sdu.sem4.Logic.orchestrator;
 
-import dk.sdu.sem4.Logic.AGV.AGVsubscriber;
-import dk.sdu.sem4.Logic.Assembly.AssemblySubscriber;
+import dk.sdu.sem4.Logic.AGVsubscriber;
+import dk.sdu.sem4.Logic.AssemblySubscriber;
 
 import dk.sdu.sem4.Logic.ISubscriber;
 
-import dk.sdu.sem4.Logic.WH.WarehouseSubscriber;
+import dk.sdu.sem4.Logic.WarehouseSubscriber;
 import org.json.JSONObject;
 
 public class Orchestrator implements IOrchestrator {

@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class HelloController implements Initializable {
+public class ProductionSystemGUIController implements Initializable {
     private final IOrchestrator orchestrator = new Orchestrator();
 
     private Thread init;

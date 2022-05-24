@@ -8,12 +8,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class ProductionSystemGUI extends Application {
 
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ProductionSystemGUI.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1066, 574);
         stage.setTitle("Drone Production System");
         stage.setScene(scene);

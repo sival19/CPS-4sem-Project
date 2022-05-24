@@ -1,4 +1,4 @@
-package dk.sdu.sem4.Logic.AGV;
+package dk.sdu.sem4.Logic;
 
 import dk.sdu.sem4.Domain.TopicHandler;
 import dk.sdu.sem4.Logic.ISubscriber;
