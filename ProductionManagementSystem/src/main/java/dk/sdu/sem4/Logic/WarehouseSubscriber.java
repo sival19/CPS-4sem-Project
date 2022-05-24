@@ -14,6 +14,7 @@ public class WarehouseSubscriber implements ISubscriber {
 
     public String getMessage() {
         message = topicSubscriber.getMessage();
+        System.out.println(message);
         return message;
     }
 

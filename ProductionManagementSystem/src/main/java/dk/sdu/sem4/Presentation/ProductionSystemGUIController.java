@@ -34,6 +34,18 @@ public class ProductionSystemGUIController implements Initializable {
         System.out.println("Production abort button clicked");
     }
 
+    @FXML
+    protected void onStartProductionClick() {
+        orchestrator.startProductionSequence();
+        System.out.println("Production start button clicked");
+    }
+
+    @FXML
+    protected void onStopProductionClick() {
+        orchestrator.stopProductionSequence();
+        System.out.println("Production stop button clicked");
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
