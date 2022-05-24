@@ -7,7 +7,7 @@ import dk.sdu.sem4.Domain.Hazelcast.IHazelCastInstance;
 
 public class TopicHandler {
 
-    String message;
+    private String message;
     TopicListener tp = new TopicListener();
     IHazelCastInstance instance = new HazelCastInstance();
 

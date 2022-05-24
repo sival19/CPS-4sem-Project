@@ -15,32 +15,18 @@ public class Orchestrator implements IOrchestrator {
     ISubscriber wh;
     ISubscriber assembly;
 
-    int battery = 100;
+    private int battery = 100;
 
-    int agvState;
-    int assemblyState;
-    int assemblyProgramName;
-    int warehouseState;
-    String programNameAGV;
+    private int agvState;
+    private int assemblyState;
+    private int assemblyProgramName;
+    private int warehouseState;
+    private String programNameAGV;
 
-    boolean assmblyHasItem = false;
-    boolean WHHasItem = false;
-    boolean AGVatAssembly = false;
-    boolean sendAssembly = false;
-    boolean sendWarehouse = true;
-    boolean AGVatWH = false;
-    boolean WHReady = true;
-    boolean AGVHasItem = false;
-    boolean itemAssembled = false;
-    boolean WHPut = false;
-    boolean WHPick = true;
-    boolean needCharge = false;
-    boolean startSystem = true;
 
-    int whItem = 1;
-    int oldWHItem;
-    static int state;
-
+    private int whItem = 1;
+    private int oldWHItem;
+    private static int state;
 
     public Orchestrator() {
         wh = new WarehouseSubscriber();
@@ -57,6 +43,20 @@ public class Orchestrator implements IOrchestrator {
     // start sequence in gui
     @Override
     public void startSequence() throws InterruptedException {
+        boolean assmblyHasItem = false;
+        boolean WHHasItem = false;
+        boolean AGVatAssembly = false;
+        boolean sendAssembly = false;
+        boolean sendWarehouse = true;
+        boolean AGVatWH = false;
+        boolean WHReady = true;
+        boolean AGVHasItem = false;
+        boolean itemAssembled = false;
+        boolean WHPut = false;
+        boolean WHPick = true;
+        boolean needCharge = false;
+        boolean startSystem = true;
+
         int oldState = getAgvState();
         state = 0;
         if (oldState != state){

@@ -4,7 +4,7 @@ import com.hazelcast.topic.Message;
 
 public class TopicListener implements com.hazelcast.topic.MessageListener<String> {
 
-    String msg;
+    private String msg;
 
     @Override
     public void onMessage(Message<String> message) {
