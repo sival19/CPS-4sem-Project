@@ -17,17 +17,8 @@ namespace AGV
 
         //init REST
         private RestClient client = new RestClient("http://localhost:8082");
-        private RestRequest request = new RestRequest("v1/status/");
         private string url = "http://localhost:8082/v1/status/";
 
-        //runner
-        // public async Task RunExample()
-        // {
-        //     GetStatus();
-        //     PutOperation();
-        // }
-        
-        
         //test PUT request
         public async void PutOperation(string name, int state, bool onlyStatus)
         {

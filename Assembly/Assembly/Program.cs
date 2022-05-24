@@ -23,7 +23,7 @@ namespace Assembly
             await topic.PublishAsync(message);
         }
 
-        public static async Task ReceiveOnTopic(string tp)
+        private static async Task ReceiveOnTopic(string tp)
         {
             _client = _hazelcast.HazelcastInstance();
             await using var topic = await _client.GetTopicAsync<String>(tp);
@@ -37,9 +37,7 @@ namespace Assembly
         /// <param name="args"></param>
         private static void OnMessage(IHTopic<string> sender, TopicMessageEventArgs<string> args)
         {
-            // Thread.Sleep(500);
             Console.WriteLine($"Got message " + args.Payload);
-            // Thread.Sleep(1000);
             var msg = new MQTTMessage();
             msg.ProcessID = Convert.ToInt32(args.Payload);
             _request.PublishOnTopic("emulator/operation", JsonConvert.SerializeObject(msg));

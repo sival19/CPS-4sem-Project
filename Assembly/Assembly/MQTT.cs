@@ -53,13 +53,6 @@ namespace Assembly
                 Console.WriteLine("Disconnected.");
             });
 
-            //on receive message on subscribed topic
-            // client.UseApplicationMessageReceivedHandler(e =>
-            // {
-            //     String s = $"MQTT Subscribed message: {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)} on topic: {e.ApplicationMessage.Topic}";
-            //     Console.WriteLine(s + "Jeg er her");
-            // });
-
             //connect
             await client.ConnectAsync(options);
         }
@@ -79,11 +72,7 @@ namespace Assembly
                     _valueToMonitor = changedValue;
                     await _program.PublishTopic("Assembly", message);
                 }
-
-                // Console.WriteLine(message + "Jeg er her");
-                // OnNewMessage(e);
             });
-            // Console.WriteLine(message + "Jeg er her");
         }
         
         public async void SubscribeToTopic(string input)
