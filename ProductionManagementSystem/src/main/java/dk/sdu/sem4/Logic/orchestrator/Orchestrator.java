@@ -34,6 +34,7 @@ public class Orchestrator implements IOrchestrator {
     boolean itemAssembled = false;
     boolean WHPut = false;
     boolean WHPick = true;
+    boolean needCharge = false;
 
     int whItem = 1;
     int oldWHItem;
@@ -52,10 +53,6 @@ public class Orchestrator implements IOrchestrator {
     }
 
 
-    private void sequenceInitializer() {
-
-    }
-
     // start sequence in gui
     @Override
     public void startSequence() throws InterruptedException {
@@ -73,15 +70,12 @@ public class Orchestrator implements IOrchestrator {
             wh.SendMessage("PickItemWarehouseOperation," + whItem);
             oldWHItem = whItem;
             whItem += 1;
-            if(whItem == 11){
-                whItem = 0;
-            }
             WHHasItem = true;
             WHReady = false;
         }
 
 
-        if (state == 1 && sendWarehouse) {
+        if (state == 1 && sendWarehouse && !needCharge) {
             agv.SendMessage("MoveToStorageOperation");
             AGVatWH = true;
             sendWarehouse = false;
@@ -89,7 +83,7 @@ public class Orchestrator implements IOrchestrator {
         }
 
 
-        if (state == 1 && WHHasItem && AGVatWH) {
+        if (state == 1 && WHHasItem && AGVatWH && !needCharge) {
 
             agv.SendMessage("PickWarehouseOperation");
             WHHasItem = false;
@@ -100,7 +94,7 @@ public class Orchestrator implements IOrchestrator {
             state = 0;
         }
 
-        if (getAssemblyState() == 0 && state == 1 && sendAssembly) {
+        if (getAssemblyState() == 0 && state == 1 && sendAssembly && !needCharge) {
             agv.SendMessage("MoveToAssemblyOperation");
             AGVatAssembly = true;
             sendAssembly = false;
@@ -109,7 +103,7 @@ public class Orchestrator implements IOrchestrator {
         }
 
 
-        if (state == 1 && AGVatAssembly && AGVHasItem) {
+        if (state == 1 && AGVatAssembly && AGVHasItem && !AGVatWH && !needCharge) {
             agv.SendMessage("PutAssemblyOperation");
             assmblyHasItem = true;
             AGVHasItem = false;
@@ -117,14 +111,14 @@ public class Orchestrator implements IOrchestrator {
         }
 
 
-        if (assmblyHasItem && !itemAssembled && getAssemblyState() == 0) {
+        if (assmblyHasItem && !itemAssembled && getAssemblyState() == 0 && state == 1) {
             assembly.SendMessage("1234");
             itemAssembled = true;
             state = 0;
         }
 
 
-        if (assmblyHasItem && itemAssembled && getAssemblyState() == 0 && state == 1) {
+        if (assmblyHasItem && itemAssembled && getAssemblyState() == 0 && state == 1 && !AGVatWH && !needCharge) {
             agv.SendMessage("PickAssemblyOperation");
             assmblyHasItem = false;
             itemAssembled = false;
@@ -133,7 +127,7 @@ public class Orchestrator implements IOrchestrator {
             state = 0;
         }
 
-        if (state == 1 && sendWarehouse && AGVHasItem){
+        if (state == 1 && sendWarehouse && AGVHasItem && !needCharge){
             agv.SendMessage("MoveToStorageOperation");
             sendWarehouse = false;
             AGVatWH = true;
@@ -141,7 +135,7 @@ public class Orchestrator implements IOrchestrator {
             state = 0;
         }
 
-        if (state == 1 && AGVHasItem && !WHHasItem && WHPut && AGVatWH){
+        if (state == 1 && AGVHasItem && !WHHasItem && WHPut && AGVatWH && !needCharge){
             agv.SendMessage("PutWarehouseOperation");
             AGVHasItem = false;
             WHHasItem = true;
@@ -152,6 +146,18 @@ public class Orchestrator implements IOrchestrator {
             WHPut = false;
             WHPick = true;
             WHReady = true;
+            WHHasItem = false;
+        }
+
+        if (getAGVbattery() < 10 && state == 1){
+            needCharge = true;
+            agv.SendMessage("MoveToChargerOperation");
+            state = 0;
+        }
+
+        if (getAGVbattery() > 10 && state == 1){
+            needCharge = false;
+            state = 0;
         }
 
         Thread.sleep(100);
