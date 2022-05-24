@@ -15,6 +15,12 @@ namespace Warehouse
         private static string _s;
         private static Regex rx = new Regex("\"State\":.");
         private static string _valueToMonitor = "";
+        private static SOAP soap = new SOAP();
+        private static IHazelcastClient _client;
+        private static Hazelcast _hazelcast = new Hazelcast();
+
+
+
 
         private static void OnMessage(IHTopic<string> sender, TopicMessageEventArgs<string> args)
         {
@@ -63,56 +69,26 @@ namespace Warehouse
             if (operation.Equals("InsertItemWarehouseOperation"))
                 await soap.insertItem(tray, name);
         }
-
-        // private static void OnMessage(IHTopic<string> sender, TopicMessageEventArgs<string> args)
-        // {
-        //     Console.WriteLine("Got message " + args.Payload);
-        //     string payload = args.Payload;
-        //     int firstArg = Convert.ToInt32(args.Payload.Split(" ")[1]);
-        //     string secondArg = args.Payload.Split(" ")[2];
-        //     Console.WriteLine(firstArg + secondArg);
-        //     
-        //     if (payload.Contains("PickItem"))
-        //     {
-        //         soap.pickItem(firstArg);
-        //     }
-        //     else if(payload.Contains("InsertItem"))
-        //     {
-        //         soap.insertItem(firstArg, secondArg);
-        //     }
-        //     else if (payload.Contains("GetInventory"))
-        //     {
-        //         soap.getInventory();
-        //     }
-        // }
-        private static SOAP soap = new SOAP();
-        private static string SOAPmessage;
-
+        
         static async Task PublishTopic(string tp, string message)
         {
-            await using var client1 = await HazelcastClientFactory.StartNewClientAsync();
-            await using var publishTopic = await client1.GetTopicAsync<String>(tp);
+            _client = _hazelcast.HazelcastInstance();
+            await using var publishTopic = await _client.GetTopicAsync<String>(tp);
 
             await publishTopic.PublishAsync(message);
         }
 
-        static async Task startSOAP()
+        private static async Task ReceiveOnTopic(string tp)
         {
-            //instatiate web service from 'Connected Services' reference through Visual Studio tool
-            var service = new EmulatorServiceClient();
-
-            //print response of GetInventoryAsync()
-            var response = await service.GetInventoryAsync();
-            SOAPmessage = response;
-            Console.WriteLine("SOAPmessage" + SOAPmessage);
+            _client = _hazelcast.HazelcastInstance();
+            await using var topic = await _client.GetTopicAsync<String>(tp);
+            await topic.SubscribeAsync(on => on.Message(OnMessage));
         }
-
+        
         static async Task Main(string[] args)
         {
             _isrunning = true;
-            await using var client2 = await HazelcastClientFactory.StartNewClientAsync();
-            await using var subscribeTopic = await client2.GetTopicAsync<String>("WarehouseFromJava");
-            await subscribeTopic.SubscribeAsync(on => on.Message(OnMessage));
+            await ReceiveOnTopic("WarehouseFromJava");
             while (_isrunning)
             {
                 _s = soap.getInventory().Result;
@@ -128,10 +104,6 @@ namespace Warehouse
                     
                 }
             }
-            
-            //await soap.getInventory();
-
-            // request.PutOperation();
         }
     }
 }

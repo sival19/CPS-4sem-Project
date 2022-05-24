@@ -13,7 +13,7 @@ namespace AGV
         private static bool _isrunning;
         private static string _valueToMonitor = "";
         private static string _statusRequest = "v1/status/";
-        static REST _request = new REST();
+        private static REST _request = new REST();
         private static string _s;
         private static Regex rx = new Regex("\"state\":.");
         private static Hazelcast _hazelcast = new Hazelcast();
@@ -32,14 +32,14 @@ namespace AGV
         }
 
 
-        static async Task PublishTopic(string tp, string message)
+        private static async Task PublishTopic(string tp, string message)
         {
             _client = _hazelcast.HazelcastInstance();
             await using var topic = await _client.GetTopicAsync<String>(tp);
             await topic.PublishAsync(message);
         }
-        
-        public static async Task ReceiveOnTopic(string tp)
+
+        private static async Task ReceiveOnTopic(string tp)
         {
             _client = _hazelcast.HazelcastInstance();
             await using var topic = await _client.GetTopicAsync<String>(tp);
@@ -61,12 +61,9 @@ namespace AGV
 
 
         [SuppressMessage("ReSharper.DPA", "DPA0001: Memory allocation issues")]
-        static async Task Main(string[] args)
+        public static async Task Main(string[] args)
         {
             _isrunning = true;
-            // await using var client = await HazelcastClientFactory.StartNewClientAsync();
-            // await using var topic = await client.GetTopicAsync<String>("AGVPubTopic");
-            // await topic.SubscribeAsync(on => on.Message(OnMessage));
             await ReceiveOnTopic("AGVPubTopic");
             while (_isrunning)
             {
