@@ -1,151 +1,195 @@
 package dk.sdu.sem4.Presentation;
-import dk.sdu.sem4.Logic.Assembly.AssemblySubscriber;
-import dk.sdu.sem4.Logic.ISubscriber;
-import dk.sdu.sem4.Logic.WH.WarehouseSubscriber;
+
 import dk.sdu.sem4.Logic.orchestrator.IOrchestrator;
 import dk.sdu.sem4.Logic.orchestrator.Orchestrator;
-import javafx.scene.shape.Rectangle;
-
-import dk.sdu.sem4.Logic.AGV.AGVsubscriber;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
 public class HelloController implements Initializable {
-    ISubscriber agv = new AGVsubscriber();
-    ISubscriber assembly= new AssemblySubscriber();
+    private final IOrchestrator orchestrator = new Orchestrator();
 
-    ISubscriber wh = new WarehouseSubscriber();
-    IOrchestrator orchestrator = new Orchestrator();
+    private Thread init;
 
-    int battery;
-    int state;
-    String programName ="";
     //labels
-    @FXML
-    private Label welcomeText;
     // text fields
-    @FXML
-    private TextField agvStatus;
-    @FXML
-    private TextField batteryStatus;
-    @FXML
-    private TextField agvProgramName;
-    @FXML
-    private TextField agvState;
-    @FXML
-    private TextField assemblyState;
-    @FXML
-    private TextField assemblyProgramName;
-    // other details
-    @FXML
-    private TextField whProgramName;
 
     @FXML
-    private TextField whState;
+    private Rectangle whErrorMarker, whExecutingMarker, assemblyErrorMarker, assemblyExecutingMarker, agvExecutingMarker, agvChargingMarker;
     @FXML
-    private Rectangle agvExecutingMarker;
-    @FXML
-    private Rectangle agvChargingMarker;
-    // production control buttons
-    @FXML
-    protected void onStartProductionClick(){
-        orchestrator.startSequence();
-//        System.out.println("Production start button clicked");
-        System.out.println("Start button clicked");
-    }
+    private TextField batteryStatus, agvProgramName, agvState, assemblyState, assemblyProgramName, whProgramName, whState;
+
 
     @FXML
-    protected void onStopProductionClick(){ System.out.println("Production stop button clicked");}
-
-    @FXML
-    protected void onPauseProductionClick(){
-        System.out.println("Production pause button clicked");
-    }
-
-    @FXML
-    protected void onAbortProductionClick(){
+    protected void onAbortProductionClick() {
+//        init.start();
+        Platform.exit();
+        System.exit(1);
         System.out.println("Production abort button clicked");
-    }
-
-    @FXML
-    protected void onChargeButtonClick(){
-        agv.SendMessage("MoveToChargerOperation");
-    }
-
-
-    @FXML
-    protected void onAssemblyButtonClick(){
-        agv.SendMessage("MoveToAssemblyOperation");
-    }
-    @FXML
-    void onAGVputAssemblyClick() {
-
-        agv.SendMessage("PutAssemblyOperation");
-    }
-
-
-    @FXML
-    protected void onWarehouseButtonClick() {
-
-        agv.SendMessage("MoveToStorageOperation");
-
-
-    }
-    @FXML
-    void onAssembleClick() {
-        System.out.println("Assembly task sent");
-        assembly.SendMessage("1234");
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true){
+        init = new Thread(
+                () -> {
+                    while (true) {
+                        showAGVData(orchestrator.getAgvState());
+                        showAssemblyData(orchestrator.getAssemblyState());
+                        showWarehoueData(orchestrator.getWarehouseState());
 
-//                  System.out.println(orchestrator.getAGVbattery());
-                    assemblyProgramName.setText(String.valueOf(orchestrator.getAssemblyProgram()));
-                    agvState.setText(String.valueOf(orchestrator.getAgvState()));
-                    assemblyState.setText(String.valueOf(orchestrator.getAssemblyState()));
-                    batteryStatus.setText(String.valueOf(orchestrator.getAGVbattery()));
-                    agvProgramName.setText(String.valueOf(orchestrator.getAGVProgram()));
-                    orchestrator.startSequence();
+                        try {
+                            orchestrator.startSequence();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
                     }
-
                 }
-            }
-        }).start();
+        );
+        init.start();
     }
-//    public void parseAssemblyState(int stateAS){
-//        switch(stateAS){
-//            case 0: assemblyState.setText("Idle");
-//            case 1: assemblyState.setText("Executing");
-//            case 2: assemblyState.setText("Error");
-//            default: assemblyState.setText("Default");
-//        }
-//    }
-//    public void parseAGVState(int stAGV){
-//        switch(stAGV){
-//            case 0: agvState.setText("Default");
-//            case 1: agvState.setText("Idle");
-//            case 2: assemblyState.setText("Executing");
-//            case 3: assemblyState.setText("Charging");
-//            default: assemblyState.setText("Default");
-//        }
-//    }
+
+    public void showAssemblyData(int stAS) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // only showing program name if the program is executing
+        switch (stAS) {
+            case -1 -> {
+                assemblyState.setText("Default");
+                assemblyProgramName.setText("Waiting");
+                assemblyExecutingMarker.setVisible(false);
+                assemblyErrorMarker.setVisible(false);
+            }
+            case 0 -> {
+                assemblyState.setText("Idle");
+                assemblyProgramName.setText("Waiting");
+                assemblyExecutingMarker.setVisible(false);
+                assemblyErrorMarker.setVisible(false);
+            }
+            case 1 -> {
+                assemblyState.setText("Executing");
+                assemblyProgramName.setText("Assembling");
+                assemblyExecutingMarker.setVisible(true);
+                assemblyErrorMarker.setVisible(false);
+            }
+            case 2 -> {
+                assemblyState.setText("Error");
+                assemblyProgramName.setText("Error");
+                assemblyExecutingMarker.setVisible(false);
+                assemblyErrorMarker.setVisible(true);
+            }
+            default -> {
+                assemblyState.setText("Invalid");
+                assemblyProgramName.setText("Invalid");
+                assemblyExecutingMarker.setVisible(false);
+                assemblyErrorMarker.setVisible(false);
+            }
+        }
+    }
+
+
+    public void showAGVData(int stAGV) {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        batteryStatus.setText(String.valueOf(orchestrator.getAGVbattery()));
+        // only showing program name if the program is executing or charging
+        switch (stAGV) {
+            case 0 -> {
+                agvState.setText("Default");
+                agvProgramName.setText("Waiting");
+                agvExecutingMarker.setVisible(false);
+                agvChargingMarker.setVisible(false);
+            }
+            case 1 -> {
+                agvState.setText("Idle");
+                agvProgramName.setText("Waiting");
+                agvExecutingMarker.setVisible(false);
+                agvChargingMarker.setVisible(false);
+            }
+            case 2 -> {
+                agvState.setText("Executing");
+                agvProgramName.setText(orchestrator.getAGVProgram());
+                agvExecutingMarker.setVisible(true);
+                agvChargingMarker.setVisible(false);
+            }
+            case 3 -> {
+                agvState.setText("Charging");
+                agvProgramName.setText(orchestrator.getAGVProgram());
+                agvExecutingMarker.setVisible(false);
+                agvChargingMarker.setVisible(true);
+            }
+            default -> {
+                agvState.setText("Invalid");
+                agvProgramName.setText("Invalid");
+                agvExecutingMarker.setVisible(false);
+                agvChargingMarker.setVisible(false);
+            }
+        }
+    }
+
+    public void showWarehoueData(int stWh) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        switch (stWh) {
+            case -1 -> {
+                whState.setText("Default");
+                whProgramName.setText("Waiting");
+                whExecutingMarker.setVisible(false);
+                whErrorMarker.setVisible(false);
+            }
+            case 0 -> {
+                whState.setText("Idle");
+                whProgramName.setText("Waiting");
+                whExecutingMarker.setVisible(false);
+                whErrorMarker.setVisible(false);
+            }
+            //Change This
+            case 1 -> {
+                whState.setText("Executing");
+                whProgramName.setText("MovingItem");
+                whExecutingMarker.setVisible(true);
+                whErrorMarker.setVisible(false);
+            }
+            case 2 -> {
+                whState.setText("Error");
+                whProgramName.setText("Error");
+                whExecutingMarker.setVisible(false);
+                whErrorMarker.setVisible(true);
+            }
+            default -> {
+                whState.setText("Invalid");
+                whProgramName.setText("Invalid");
+                whExecutingMarker.setVisible(false);
+                whErrorMarker.setVisible(false);
+            }
+        }
+    }
+
+
 }
 
 

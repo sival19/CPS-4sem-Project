@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ServiceModel.Channels;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Threading;
 using Hazelcast;
@@ -11,13 +12,17 @@ namespace Warehouse
     internal class Program
     {
         private static bool _isrunning;
+        private static string _s;
+        private static Regex rx = new Regex("\"State\":.");
+        private static string _valueToMonitor = "";
+
         private static void OnMessage(IHTopic<string> sender, TopicMessageEventArgs<string> args)
         {
             Console.WriteLine($"Got message " + args.Payload);
             string operation = null;
             int trayId = 0;
             string name = null;
-            
+
             switch (args.Payload.Split(",").Length)
             {
                 case 1:
@@ -43,19 +48,22 @@ namespace Warehouse
 
         private static async void PutMethodSoap(string operation)
         {
-            if(operation.Equals("GetInventoryWarehouseOperation")) 
+            if (operation.Equals("GetInventoryWarehouseOperation"))
                 await soap.getInventory();
         }
+
         private static async void PutMethodSoap(string operation, int tray)
         {
-            if(operation.Equals("PickItemWarehouseOperation")) 
+            if (operation.Equals("PickItemWarehouseOperation"))
                 await soap.pickItem(tray);
         }
+
         private static async void PutMethodSoap(string operation, int tray, string name)
         {
             if (operation.Equals("InsertItemWarehouseOperation"))
                 await soap.insertItem(tray, name);
         }
+
         // private static void OnMessage(IHTopic<string> sender, TopicMessageEventArgs<string> args)
         // {
         //     Console.WriteLine("Got message " + args.Payload);
@@ -79,6 +87,7 @@ namespace Warehouse
         // }
         private static SOAP soap = new SOAP();
         private static string SOAPmessage;
+
         static async Task PublishTopic(string tp, string message)
         {
             await using var client1 = await HazelcastClientFactory.StartNewClientAsync();
@@ -86,18 +95,19 @@ namespace Warehouse
 
             await publishTopic.PublishAsync(message);
         }
-         static async Task startSOAP()
-                {
-                    //instatiate web service from 'Connected Services' reference through Visual Studio tool
-                   var service = new EmulatorServiceClient();
-                   
-                   //print response of GetInventoryAsync()
-                   var response = await service.GetInventoryAsync();
-                   SOAPmessage = response;
-                   Console.WriteLine("SOAPmessage" + SOAPmessage);
-                }
 
-         static async Task Main(string[] args)
+        static async Task startSOAP()
+        {
+            //instatiate web service from 'Connected Services' reference through Visual Studio tool
+            var service = new EmulatorServiceClient();
+
+            //print response of GetInventoryAsync()
+            var response = await service.GetInventoryAsync();
+            SOAPmessage = response;
+            Console.WriteLine("SOAPmessage" + SOAPmessage);
+        }
+
+        static async Task Main(string[] args)
         {
             _isrunning = true;
             await using var client2 = await HazelcastClientFactory.StartNewClientAsync();
@@ -105,21 +115,23 @@ namespace Warehouse
             await subscribeTopic.SubscribeAsync(on => on.Message(OnMessage));
             while (_isrunning)
             {
-                //var changedValue = match2.Value;
-                //if (!_valueToMonitor.Equals(changedValue))
-                //{
-                    //_valueToMonitor = changedValue;
-                    await PublishTopic("WarehouseToJava", await soap.getInventory());
-                //}
+                _s = soap.getInventory().Result;
+                Match match2 = rx.Match(_s);
+                var changedValue = match2.Value;
+                await Task.Delay(500);
 
-                
+                if (!_valueToMonitor.Equals(changedValue))
+                {
+                    Console.WriteLine(_s);
+                    _valueToMonitor = changedValue;
+                    await PublishTopic("WarehouseToJava", await soap.getInventory());
+                    
+                }
             }
+            
             //await soap.getInventory();
 
             // request.PutOperation();
-
-            
         }
     }
 }
-
