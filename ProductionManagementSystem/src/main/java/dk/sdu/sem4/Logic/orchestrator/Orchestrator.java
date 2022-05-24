@@ -35,6 +35,7 @@ public class Orchestrator implements IOrchestrator {
     boolean WHPut = false;
     boolean WHPick = true;
     boolean needCharge = false;
+    boolean startSystem = true;
 
     int whItem = 1;
     int oldWHItem;
@@ -65,6 +66,11 @@ public class Orchestrator implements IOrchestrator {
         Thread t9 = new Thread(() -> {
         });
 
+        if (startSystem){
+            agv.SendMessage("MoveToChargerOperation");
+            state = 0;
+            startSystem = false;
+        }
 
         if (state == 1 && !WHHasItem && getWarehouseState() == 0 && WHReady && WHPick) {
             wh.SendMessage("PickItemWarehouseOperation," + whItem);
