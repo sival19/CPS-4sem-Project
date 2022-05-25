@@ -22,30 +22,30 @@
             </image>
          </ImageView>
          <TextField fx:id="agvStatus" layoutX="914.0" layoutY="6.0" opacity="0.0" prefHeight="31.0" prefWidth="98.0" />
-         <Button layoutX="403.0" layoutY="461.0" mnemonicParsing="false" onAction="#onAbortProductionClick" prefHeight="47.0" prefWidth="198.0" style="-fx-background-color: transparent;" text="abort" textFill="WHITE">
+         <Button layoutX="682.0" layoutY="455.0" mnemonicParsing="false" onAction="#onAbortProductionClick" prefHeight="53.0" prefWidth="198.0" style="-fx-background-color: transparent;" text="Abort" textFill="WHITE">
             <font>
                <Font name="System Bold" size="18.0" />
             </font>
          </Button>
-         <TextField fx:id="agvState" layoutX="438.0" layoutY="67.0" prefHeight="31.0" prefWidth="160.0" />
-         <TextField fx:id="batteryStatus" layoutX="436.0" layoutY="273.0" prefHeight="31.0" prefWidth="148.0" style="-fx-background-color: transparent;" />
-         <TextField fx:id="agvProgramName" layoutX="464.0" layoutY="327.0" prefHeight="38.0" prefWidth="177.0" style="-fx-background-color: transparent;" />
-         <Rectangle fx:id="agvExecutingMarker" arcHeight="5.0" arcWidth="5.0" fill="#7fbcf5" height="15.0" layoutX="415.0" layoutY="75.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
-         <Rectangle fx:id="agvChargingMarker" arcHeight="5.0" arcWidth="5.0" fill="#6ec68d" height="15.0" layoutX="415.0" layoutY="75.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
-         <TextField fx:id="assemblyState" layoutX="790.0" layoutY="63.0" prefHeight="31.0" prefWidth="162.0" />
-         <TextField fx:id="assemblyProgramName" layoutX="814.0" layoutY="324.0" prefHeight="38.0" prefWidth="183.0" style="-fx-background-color: transparent;" />
-         <TextField fx:id="whState" layoutX="91.0" layoutY="66.0" prefHeight="26.0" prefWidth="164.0" />
-         <TextField fx:id="whProgramName" layoutX="116.0" layoutY="327.0" prefHeight="38.0" prefWidth="183.0" style="-fx-background-color: transparent;" />
-         <Rectangle fx:id="whExecutingMarker" arcHeight="5.0" arcWidth="5.0" fill="#7fbcf5" height="15.0" layoutX="67.0" layoutY="72.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
-         <Rectangle fx:id="whErrorMarker" arcHeight="5.0" arcWidth="5.0" fill="#f5997f" height="15.0" layoutX="67.0" layoutY="72.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
-         <Rectangle fx:id="assemblyExecutingMarker" arcHeight="5.0" arcWidth="5.0" fill="#7fbcf5" height="15.0" layoutX="766.0" layoutY="70.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
-         <Rectangle fx:id="assemblyErrorMarker" arcHeight="5.0" arcWidth="5.0" fill="#f5997f" height="15.0" layoutX="766.0" layoutY="70.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
-         <Button layoutX="150.0" layoutY="461.0" mnemonicParsing="false" onAction="#onStartProductionClick" prefHeight="47.0" prefWidth="198.0" style="-fx-background-color: transparent;" text="Start" textFill="#170101">
+         <TextField fx:id="agvState" layoutX="438.0" layoutY="60.0" prefHeight="31.0" prefWidth="162.0" />
+         <TextField fx:id="batteryStatus" layoutX="440.0" layoutY="272.0" prefHeight="12.0" prefWidth="148.0" style="-fx-background-color: transparent;" />
+         <TextField fx:id="agvProgramName" layoutX="470.0" layoutY="330.0" prefHeight="25.0" prefWidth="183.0" style="-fx-background-color: transparent;" />
+         <Rectangle fx:id="agvExecutingMarker" arcHeight="5.0" arcWidth="5.0" fill="#7fbcf5" height="15.0" layoutX="415.0" layoutY="68.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
+         <Rectangle fx:id="agvChargingMarker" arcHeight="5.0" arcWidth="5.0" fill="#6ec68d" height="15.0" layoutX="415.0" layoutY="68.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
+         <TextField fx:id="assemblyState" layoutX="793.0" layoutY="57.0" prefHeight="31.0" prefWidth="162.0" />
+         <TextField fx:id="assemblyProgramName" layoutX="820.0" layoutY="328.0" prefHeight="26.0" prefWidth="183.0" style="-fx-background-color: transparent;" />
+         <TextField fx:id="whState" layoutX="91.0" layoutY="59.0" prefHeight="26.0" prefWidth="164.0" />
+         <TextField fx:id="whProgramName" layoutX="116.0" layoutY="330.0" prefHeight="26.0" prefWidth="183.0" style="-fx-background-color: transparent;" />
+         <Rectangle fx:id="whExecutingMarker" arcHeight="5.0" arcWidth="5.0" fill="#7fbcf5" height="15.0" layoutX="67.0" layoutY="68.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
+         <Rectangle fx:id="whErrorMarker" arcHeight="5.0" arcWidth="5.0" fill="#f5997f" height="15.0" layoutX="67.0" layoutY="68.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
+         <Rectangle fx:id="assemblyExecutingMarker" arcHeight="5.0" arcWidth="5.0" fill="#7fbcf5" height="15.0" layoutX="770.0" layoutY="65.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
+         <Rectangle fx:id="assemblyErrorMarker" arcHeight="5.0" arcWidth="5.0" fill="#f5997f" height="15.0" layoutX="770.0" layoutY="65.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
+         <Button layoutX="140.0" layoutY="455.0" mnemonicParsing="false" onAction="#onStartProductionClick" prefHeight="53.0" prefWidth="198.0" style="-fx-background-color: transparent;" text="Start" textFill="WHITE">
             <font>
                <Font name="System Bold" size="18.0" />
             </font>
          </Button>
-         <Button layoutX="680.0" layoutY="471.0" mnemonicParsing="false" onAction="#onStopProductionClick" prefHeight="47.0" prefWidth="198.0" style="-fx-background-color: transparent;" text="Stop" textFill="#170101">
+         <Button layoutX="419.0" layoutY="455.0" mnemonicParsing="false" onAction="#onStopProductionClick" prefHeight="53.0" prefWidth="198.0" style="-fx-background-color: transparent;" text="Stop" textFill="WHITE">
             <font>
                <Font name="System Bold" size="18.0" />
             </font>
