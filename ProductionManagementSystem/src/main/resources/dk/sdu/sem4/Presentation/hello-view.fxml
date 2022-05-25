@@ -40,6 +40,16 @@
          <Rectangle fx:id="whErrorMarker" arcHeight="5.0" arcWidth="5.0" fill="#f5997f" height="15.0" layoutX="67.0" layoutY="72.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
          <Rectangle fx:id="assemblyExecutingMarker" arcHeight="5.0" arcWidth="5.0" fill="#7fbcf5" height="15.0" layoutX="766.0" layoutY="70.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
          <Rectangle fx:id="assemblyErrorMarker" arcHeight="5.0" arcWidth="5.0" fill="#f5997f" height="15.0" layoutX="766.0" layoutY="70.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="15.0" />
+         <Button layoutX="150.0" layoutY="461.0" mnemonicParsing="false" onAction="#onStartProductionClick" prefHeight="47.0" prefWidth="198.0" style="-fx-background-color: transparent;" text="Start" textFill="#170101">
+            <font>
+               <Font name="System Bold" size="18.0" />
+            </font>
+         </Button>
+         <Button layoutX="680.0" layoutY="471.0" mnemonicParsing="false" onAction="#onStopProductionClick" prefHeight="47.0" prefWidth="198.0" style="-fx-background-color: transparent;" text="Stop" textFill="#170101">
+            <font>
+               <Font name="System Bold" size="18.0" />
+            </font>
+         </Button>
       </children>
    </AnchorPane>
 </VBox>

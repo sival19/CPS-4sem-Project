@@ -28,7 +28,15 @@ namespace AGV
         private static void OnMessage(IHTopic<string> sender, TopicMessageEventArgs<string> args)
         {
             Console.WriteLine($"Got message " + args.Payload);
-            PutMethodRest(args.Payload);
+            if (args.Payload == "Start")
+            {
+                PublishTopic("AGVSubTopic", "{battery: 100, program name: Start, state: 1}");
+            }
+            else
+            {
+                PutMethodRest(args.Payload);
+
+            }
         }
 
 

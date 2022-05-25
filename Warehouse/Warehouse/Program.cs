@@ -84,7 +84,7 @@ namespace Warehouse
             await using var topic = await _client.GetTopicAsync<String>(tp);
             await topic.SubscribeAsync(on => on.Message(OnMessage));
         }
-        
+
         static async Task Main(string[] args)
         {
             _isrunning = true;
