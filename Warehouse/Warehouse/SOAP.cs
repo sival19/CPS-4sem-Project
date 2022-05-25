@@ -20,16 +20,11 @@ namespace Warehouse
         {
             var response = await service.PickItemAsync(trayId);
             Console.WriteLine(response);
-            //return response;
         }
-        //runner
         public async Task<String> getInventory()
         {
-            //instatiate web service from 'Connected Services' reference through Visual Studio tool
-            //print response of GetInventoryAsync()
             var response = await service.GetInventoryAsync();
             SOAPmessage = response;
-            //Console.WriteLine(SOAPmessage + "\n"); //Print message with a new line
             return SOAPmessage;
         }
 
@@ -38,7 +33,6 @@ namespace Warehouse
             var response = await service.InsertItemAsync(trayId, name);
             SOAPmessage = response;
             Console.WriteLine(response);
-            //return SOAPmessage;
         }
     }
 }
